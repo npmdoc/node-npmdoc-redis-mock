@@ -1,0 +1,3494 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/yeahoffline/redis-mock#readme"
+
+    >redis-mock (v0.16.0)</a>
+</h1>
+<h4>Redis client mock object for unit testing</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock">module redis-mock</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock._callCallback">
+            function <span class="apidocSignatureSpan">redis-mock.</span>_callCallback
+            <span class="apidocSignatureSpan">(callback, err, result)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.multi">
+            function <span class="apidocSignatureSpan">redis-mock.</span>multi
+            <span class="apidocSignatureSpan">(commands)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>hash</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>helpers</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>item</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>keys</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>list</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>pubsub</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>server</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>set</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>sortedset</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>storage</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>strings</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock._callCallback">module redis-mock._callCallback</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock._callCallback._callCallback">
+            function <span class="apidocSignatureSpan">redis-mock.</span>_callCallback
+            <span class="apidocSignatureSpan">(callback, err, result)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.hash">module redis-mock.hash</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hdel">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hdel
+            <span class="apidocSignatureSpan">(mockInstance, hash, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hexists">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hexists
+            <span class="apidocSignatureSpan">(mockInstance, hash, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hget">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hget
+            <span class="apidocSignatureSpan">(mockInstance, hash, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hgetall">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hgetall
+            <span class="apidocSignatureSpan">(mockInstance, hash, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hincrby">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hincrby
+            <span class="apidocSignatureSpan">(mockInstance, hash, key, increment, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hincrbyfloat">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hincrbyfloat
+            <span class="apidocSignatureSpan">(mockInstance, hash, key, increment, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hkeys">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hkeys
+            <span class="apidocSignatureSpan">(mockInstance, hash, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hlen">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hlen
+            <span class="apidocSignatureSpan">(mockInstance, hash, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hmget">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hmget
+            <span class="apidocSignatureSpan">(mockInstance)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hmset">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hmset
+            <span class="apidocSignatureSpan">(mockInstance, hash)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hset">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hset
+            <span class="apidocSignatureSpan">(mockInstance, hash, key, value, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hsetnx">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hsetnx
+            <span class="apidocSignatureSpan">(mockInstance, hash, key, value, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.hash.hvals">
+            function <span class="apidocSignatureSpan">redis-mock.hash.</span>hvals
+            <span class="apidocSignatureSpan">(mockInstance, hash, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.helpers">module redis-mock.helpers</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.helpers.initKey">
+            function <span class="apidocSignatureSpan">redis-mock.helpers.</span>initKey
+            <span class="apidocSignatureSpan">(mockInstance, key, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.helpers.mockCallback">
+            function <span class="apidocSignatureSpan">redis-mock.helpers.</span>mockCallback
+            <span class="apidocSignatureSpan">(err, reply)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.helpers.parseCallback">
+            function <span class="apidocSignatureSpan">redis-mock.helpers.</span>parseCallback
+            <span class="apidocSignatureSpan">(args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.helpers.patternToRegex">
+            function <span class="apidocSignatureSpan">redis-mock.helpers.</span>patternToRegex
+            <span class="apidocSignatureSpan">(pattern)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.helpers.validKeyType">
+            function <span class="apidocSignatureSpan">redis-mock.helpers.</span>validKeyType
+            <span class="apidocSignatureSpan">(mockInstance, key, type, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.item">module redis-mock.item</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item._hash">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>_hash
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item._item">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>_item
+            <span class="apidocSignatureSpan">(type, expire)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item._list">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>_list
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item._set">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>_set
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item._sortedset">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>_sortedset
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item._string">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>_string
+            <span class="apidocSignatureSpan">(value, expires)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item._stringify">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>_stringify
+            <span class="apidocSignatureSpan">(value)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item.createHash">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>createHash
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item.createList">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>createList
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item.createSet">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>createSet
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item.createSortedSet">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>createSortedSet
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.item.createString">
+            function <span class="apidocSignatureSpan">redis-mock.item.</span>createString
+            <span class="apidocSignatureSpan">(elt, expire)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.keys">module redis-mock.keys</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.keys.keys">
+            function <span class="apidocSignatureSpan">redis-mock.</span>keys
+            <span class="apidocSignatureSpan">(mockInstance, pattern, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.keys.del">
+            function <span class="apidocSignatureSpan">redis-mock.keys.</span>del
+            <span class="apidocSignatureSpan">(mockInstance, keys, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.keys.exists">
+            function <span class="apidocSignatureSpan">redis-mock.keys.</span>exists
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.keys.expire">
+            function <span class="apidocSignatureSpan">redis-mock.keys.</span>expire
+            <span class="apidocSignatureSpan">(mockInstance, key, seconds, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.keys.ttl">
+            function <span class="apidocSignatureSpan">redis-mock.keys.</span>ttl
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.list">module redis-mock.list</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.blpop">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>blpop
+            <span class="apidocSignatureSpan">(mockInstance, keys, timeout, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.brpop">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>brpop
+            <span class="apidocSignatureSpan">(mockInstance, keys, timeout, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.lindex">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>lindex
+            <span class="apidocSignatureSpan">(mockInstance, key, index, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.llen">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>llen
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.lpop">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>lpop
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.lpush">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>lpush
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.lpushx">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>lpushx
+            <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.lrange">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>lrange
+            <span class="apidocSignatureSpan">(mockInstance, key, startIndex, stopIndex, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.lset">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>lset
+            <span class="apidocSignatureSpan">(mockInstance, key, index, value, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.rpop">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>rpop
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.rpush">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>rpush
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.list.rpushx">
+            function <span class="apidocSignatureSpan">redis-mock.list.</span>rpushx
+            <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.multi">module redis-mock.multi</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.multi.multi">
+            function <span class="apidocSignatureSpan">redis-mock.</span>multi
+            <span class="apidocSignatureSpan">(commands)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.pubsub">module redis-mock.pubsub</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.pubsub.psubscribe">
+            function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>psubscribe
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.pubsub.publish">
+            function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>publish
+            <span class="apidocSignatureSpan">(mockInstance, channel, msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.pubsub.punsubscribe">
+            function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>punsubscribe
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.pubsub.subscribe">
+            function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>subscribe
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.pubsub.unsubscribe">
+            function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>unsubscribe
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.server">module redis-mock.server</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.server.auth">
+            function <span class="apidocSignatureSpan">redis-mock.server.</span>auth
+            <span class="apidocSignatureSpan">(mockInstance, password, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.server.flushall">
+            function <span class="apidocSignatureSpan">redis-mock.server.</span>flushall
+            <span class="apidocSignatureSpan">(mockInstance, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.server.flushdb">
+            function <span class="apidocSignatureSpan">redis-mock.server.</span>flushdb
+            <span class="apidocSignatureSpan">(mockInstance, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.set">module redis-mock.set</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.set.sadd">
+            function <span class="apidocSignatureSpan">redis-mock.set.</span>sadd
+            <span class="apidocSignatureSpan">(mockInstance, key, members, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.set.scard">
+            function <span class="apidocSignatureSpan">redis-mock.set.</span>scard
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.set.sismember">
+            function <span class="apidocSignatureSpan">redis-mock.set.</span>sismember
+            <span class="apidocSignatureSpan">(mockInstance, key, member, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.set.smembers">
+            function <span class="apidocSignatureSpan">redis-mock.set.</span>smembers
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.set.srem">
+            function <span class="apidocSignatureSpan">redis-mock.set.</span>srem
+            <span class="apidocSignatureSpan">(mockInstance, key, members, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.sortedset">module redis-mock.sortedset</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zadd">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zadd
+            <span class="apidocSignatureSpan">(mockInstance, key)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zcard">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zcard
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zcount">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zcount
+            <span class="apidocSignatureSpan">(mockInstance, key, min, max, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zincrby">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zincrby
+            <span class="apidocSignatureSpan">(mockInstance, key, increment, member, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zrange">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrange
+            <span class="apidocSignatureSpan">(mockInstance, key, start, stop, withscores, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zrangebyscore">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrangebyscore
+            <span class="apidocSignatureSpan">( mockInstance, key, min, max, withscores, limit, offset, count, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zrank">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrank
+            <span class="apidocSignatureSpan">(mockInstance, key, member, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zrem">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrem
+            <span class="apidocSignatureSpan">(mockInstance, key)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zremrangebyrank">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zremrangebyrank
+            <span class="apidocSignatureSpan">(mockInstance, key, start, stop, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zremrangebyscore">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zremrangebyscore
+            <span class="apidocSignatureSpan">(mockInstance, key, min, max, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zrevrange">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrevrange
+            <span class="apidocSignatureSpan">(mockInstance, key, start, stop, withscores, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zrevrangebyscore">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrevrangebyscore
+            <span class="apidocSignatureSpan">( mockInstance, key, max, min, withscores, limit, offset, count, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zrevrank">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrevrank
+            <span class="apidocSignatureSpan">(mockInstance, key, member, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.sortedset.zscore">
+            function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zscore
+            <span class="apidocSignatureSpan">(mockInstance, key, member, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.strings">module redis-mock.strings</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.get">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>get
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.getset">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>getset
+            <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.incr">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>incr
+            <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.incrby">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>incrby
+            <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.incrbyfloat">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>incrbyfloat
+            <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.mget">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>mget
+            <span class="apidocSignatureSpan">(mockInstance)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.ping">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>ping
+            <span class="apidocSignatureSpan">(mockInstance, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.set">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>set
+            <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.strings.setnx">
+            function <span class="apidocSignatureSpan">redis-mock.strings.</span>setnx
+            <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock" id="apidoc.module.redis-mock">module redis-mock</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock._callCallback" id="apidoc.element.redis-mock._callCallback">
+        function <span class="apidocSignatureSpan">redis-mock.</span>_callCallback
+        <span class="apidocSignatureSpan">(callback, err, result)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_callCallback = function (callback, err, result) {
+  if (callback) {
+    process.nextTick(function () {
+      callback(err, result);
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if (mockInstance.storage[hash].type === &#x22;hash&#x22;) {
+      value = mockInstance.storage[hash].value[key];
+    } else {
+      err = new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;);
+    }
+  }
+
+  mockInstance.<span class="apidocCodeKeywordSpan">_callCallback</span>(callback, err, value);
+}
+
+/**
+ * Hexists
+ */
+exports.hexists = function (mockInstance, hash, key, callback) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.multi" id="apidoc.element.redis-mock.multi">
+        function <span class="apidocSignatureSpan">redis-mock.</span>multi
+        <span class="apidocSignatureSpan">(commands)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">multi = function (commands) {
+  var result = new Multi(this);
+  if(commands) {
+    commands.forEach(function (command) {
+      result._command(command[0], command.slice(1));
+    });
+  }
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock._callCallback" id="apidoc.module.redis-mock._callCallback">module redis-mock._callCallback</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock._callCallback._callCallback" id="apidoc.element.redis-mock._callCallback._callCallback">
+        function <span class="apidocSignatureSpan">redis-mock.</span>_callCallback
+        <span class="apidocSignatureSpan">(callback, err, result)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_callCallback = function (callback, err, result) {
+  if (callback) {
+    process.nextTick(function () {
+      callback(err, result);
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if (mockInstance.storage[hash].type === &#x22;hash&#x22;) {
+      value = mockInstance.storage[hash].value[key];
+    } else {
+      err = new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;);
+    }
+  }
+
+  mockInstance.<span class="apidocCodeKeywordSpan">_callCallback</span>(callback, err, value);
+}
+
+/**
+ * Hexists
+ */
+exports.hexists = function (mockInstance, hash, key, callback) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.hash" id="apidoc.module.redis-mock.hash">module redis-mock.hash</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hdel" id="apidoc.element.redis-mock.hash.hdel">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hdel
+        <span class="apidocSignatureSpan">(mockInstance, hash, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hdel = function (mockInstance, hash, key, callback) {
+
+  var nb = 0;
+
+  //TODO: Support multiple values as key
+  if (mockInstance.storage[hash]) {
+    if (mockInstance.storage[hash].type === &#x22;hash&#x22;) {
+      if (mockInstance.storage[hash].value[key]) {
+        delete mockInstance.storage[hash].value[key];
+        nb++;
+      }
+    } else {
+      err = new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;);
+    }
+  }
+
+  mockInstance._callCallback(callback, null, nb);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hexists" id="apidoc.element.redis-mock.hash.hexists">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hexists
+        <span class="apidocSignatureSpan">(mockInstance, hash, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hexists = function (mockInstance, hash, key, callback) {
+
+  var b = 0;
+  var err = null;
+
+  if (mockInstance.storage[hash]) {
+    if (mockInstance.storage[hash].type === &#x22;hash&#x22;) {
+      b = mockInstance.storage[hash].value[key] ? 1 : 0;
+    } else {
+      err = new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;);
+    }
+  }
+
+  mockInstance._callCallback(callback, err, b);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hget" id="apidoc.element.redis-mock.hash.hget">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hget
+        <span class="apidocSignatureSpan">(mockInstance, hash, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hget = function (mockInstance, hash, key, callback) {
+
+  var value = null;
+  var err = null;
+
+  if (mockInstance.storage[hash]) {
+    if (mockInstance.storage[hash].type === &#x22;hash&#x22;) {
+      value = mockInstance.storage[hash].value[key];
+    } else {
+      err = new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;);
+    }
+  }
+
+  mockInstance._callCallback(callback, err, value);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hgetall" id="apidoc.element.redis-mock.hash.hgetall">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hgetall
+        <span class="apidocSignatureSpan">(mockInstance, hash, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hgetall = function (mockInstance, hash, callback) {
+
+  // TODO: Confirm if this should return null or empty obj when key does not exist
+  var obj = {};
+  var nb = 0;
+
+  if (mockInstance.storage[hash] &#x26;&#x26; mockInstance.storage[hash].type !== &#x22;hash&#x22;) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+  }
+  if (mockInstance.storage[hash]) {
+    for (var k in mockInstance.storage[hash].value) {
+      nb++;
+      obj[k] = mockInstance.storage[hash].value[k];
+    }
+  }
+
+  mockInstance._callCallback(callback, null, nb === 0 ? null : obj);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hincrby" id="apidoc.element.redis-mock.hash.hincrby">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hincrby
+        <span class="apidocSignatureSpan">(mockInstance, hash, key, increment, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hincrby = function (mockInstance, hash, key, increment, callback) {
+
+  if (mockInstance.storage[hash]) {
+    if (mockInstance.storage[hash].type !== &#x22;hash&#x22;) {
+      return mockInstance._callCallback(callback,
+        new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+    }
+  } else {
+    mockInstance.storage[hash] = Item.createHash();
+  }
+
+  if (mockInstance.storage[hash].value[key] &#x26;&#x26; !/^\d+$/.test(mockInstance.storage[hash].value[key])) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR hash value is not an integer&#x22;));
+  }
+
+  mockInstance.storage[hash].value[key] = parseInt(mockInstance.storage[hash].value[key]) || 0;
+
+  mockInstance.storage[hash].value[key] += increment;
+
+  mockInstance.storage[hash].value[key] += &#x22;&#x22;; //Because HGET returns Strings
+
+  mockInstance._callCallback(callback, null, parseInt(mockInstance.storage[hash].value[key])); //Because HINCRBY returns integers
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hincrbyfloat" id="apidoc.element.redis-mock.hash.hincrbyfloat">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hincrbyfloat
+        <span class="apidocSignatureSpan">(mockInstance, hash, key, increment, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hincrbyfloat = function (mockInstance, hash, key, increment, callback) {
+
+  if (mockInstance.storage[hash]) {
+    if (mockInstance.storage[hash].type !== &#x22;hash&#x22;) {
+      return mockInstance._callCallback(callback,
+        new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+    }
+  } else {
+    mockInstance.storage[hash] = Item.createHash();
+  }
+
+  function isFloat(n) {
+      return n === +n &#x26;&#x26; n !== (n|0);
+  }
+
+  if (mockInstance.storage[hash].value[key] &#x26;&#x26; !isFloat(parseFloat(mockInstance.storage[hash].value[key]))) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR value is not a valid float&#x22;));
+  }
+
+  mockInstance.storage[hash].value[key] = parseFloat(mockInstance.storage[hash].value[key]) || 0;
+  mockInstance.storage[hash].value[key] += parseFloat(increment);
+  //convert to string
+  mockInstance.storage[hash].value[key] = mockInstance.storage[hash].value[key].toString();
+
+  mockInstance._callCallback(callback, null, mockInstance.storage[hash].value[key]);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hkeys" id="apidoc.element.redis-mock.hash.hkeys">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hkeys
+        <span class="apidocSignatureSpan">(mockInstance, hash, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hkeys = function (mockInstance, hash, callback) {
+
+  var list = [];
+
+  if (mockInstance.storage[hash] &#x26;&#x26; mockInstance.storage[hash].type !== &#x22;hash&#x22;) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+  }
+  if (mockInstance.storage[hash]) {
+    for (var k in mockInstance.storage[hash].value) {
+      list.push(k);
+    }
+  }
+
+  mockInstance._callCallback(callback, null, list);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hlen" id="apidoc.element.redis-mock.hash.hlen">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hlen
+        <span class="apidocSignatureSpan">(mockInstance, hash, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hlen = function (mockInstance, hash, callback) {
+
+  if (!mockInstance.storage[hash]) {
+    return mockInstance._callCallback(callback, null, 0);
+  }
+  if (mockInstance.storage[hash].type !== &#x22;hash&#x22;) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+  }
+  var cnt = 0;
+  for (var p in mockInstance.storage[hash].value) {
+    if (mockInstance.storage[hash].value.hasOwnProperty(p)) {
+      cnt++;
+    }
+  }
+
+  mockInstance._callCallback(callback, null, cnt);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hmget" id="apidoc.element.redis-mock.hash.hmget">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hmget
+        <span class="apidocSignatureSpan">(mockInstance)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hmget = function (mockInstance) {
+
+  // We require at least 3 arguments
+  // 0: mockInstance
+  // 1: hash name
+  // 2: key/value object or first key name
+  if (arguments.length &#x3c;= 3) {
+    return;
+  }
+
+  var keyValuesToGet = [];
+
+  for (var i = 2; i &#x3c; arguments.length; i++) {
+
+    // Neither key nor value is a callback
+    if (&#x27;function&#x27; !== typeof arguments[i] &#x26;&#x26; &#x27;function&#x27; !== typeof arguments[i]) {
+
+      keyValuesToGet.push(arguments[i]);
+
+    } else {
+      break;
+    }
+  }
+
+  var keyValues = [];
+  var hash = arguments[1];
+
+  if (mockInstance.storage[hash]) {
+    if (mockInstance.storage[hash].type !== &#x22;hash&#x22;) {
+      return mockInstance._callCallback(callback,
+        new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+    } else {
+      for (var k in keyValuesToGet) {
+        keyValues.push(mockInstance.storage[hash].value[keyValuesToGet[k]])
+      }
+    }
+  } else {
+    for (var k in keyValuesToGet) {
+      keyValues.push(null)
+    }
+  }
+
+  // Do we have a callback?
+  if (&#x27;function&#x27; === typeof arguments[arguments.length - 1]) {
+    mockInstance._callCallback(arguments[arguments.length - 1], null, keyValues);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hmset" id="apidoc.element.redis-mock.hash.hmset">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hmset
+        <span class="apidocSignatureSpan">(mockInstance, hash)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hmset = function (mockInstance, hash) {
+
+  // We require at least 3 arguments
+  // 0: mockInstance
+  // 1: hash name
+  // 2..N-2: key
+  // 3..N-1: value
+  // N: callback (optional)
+
+  var len = arguments.length;
+  if (len &#x3c;= 3) {
+    return;
+  }
+
+  var callback;
+  if (&#x27;function&#x27; === typeof arguments[len - 1]) {
+    callback = arguments[len-1];
+  }
+
+  // check to see if this hash exists
+  if (mockInstance.storage[hash]) {
+    if (mockInstance.storage[hash].type !== &#x22;hash&#x22; &#x26;&#x26; callback) {
+      return mockInstance._callCallback(callback,
+        new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+    }
+  } else {
+    mockInstance.storage[hash] = new Item.createHash();
+  }
+
+  for (var i = 2; i &#x3c; len; i += 2) {
+    if (len &#x3c;= (i + 1)) {
+      // should skip the callback here
+      break;
+    }
+    var k = arguments[i];
+    var v = arguments[i + 1];
+    mockInstance.storage[hash].value[k] = v;
+  }
+
+  // Do we have a callback?
+  if (callback) {
+    mockInstance._callCallback(callback, null, &#x22;OK&#x22;);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hset" id="apidoc.element.redis-mock.hash.hset">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hset
+        <span class="apidocSignatureSpan">(mockInstance, hash, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hset = function (mockInstance, hash, key, value, callback) {
+  var update = false;
+
+  if (mockInstance.storage[hash]) {
+    if (mockInstance.storage[hash].type !== &#x22;hash&#x22;) {
+      return mockInstance._callCallback(callback,
+        new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+    }
+    if (mockInstance.storage[hash].value[key]) {
+      update = true;
+    }
+  } else {
+    mockInstance.storage[hash] = Item.createHash();
+  }
+
+  mockInstance.storage[hash].value[key] = value;
+
+  mockInstance._callCallback(callback, null, update ? 0 : 1);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Hsetnx
+ */
+exports.hsetnx = function (mockInstance, hash, key, value, callback) {
+  if (!mockInstance.storage[hash]
+    || mockInstance.storage[hash].type !== &#x22;hash&#x22;
+    || !mockInstance.storage[hash].value[key]) {
+    exports.<span class="apidocCodeKeywordSpan">hset</span>(mockInstance, hash, key, value, callback);
+  } else {
+    mockInstance._callCallback(callback, null, 0);
+  }
+
+};
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hsetnx" id="apidoc.element.redis-mock.hash.hsetnx">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hsetnx
+        <span class="apidocSignatureSpan">(mockInstance, hash, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hsetnx = function (mockInstance, hash, key, value, callback) {
+  if (!mockInstance.storage[hash]
+    || mockInstance.storage[hash].type !== &#x22;hash&#x22;
+    || !mockInstance.storage[hash].value[key]) {
+    exports.hset(mockInstance, hash, key, value, callback);
+  } else {
+    mockInstance._callCallback(callback, null, 0);
+  }
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.hash.hvals" id="apidoc.element.redis-mock.hash.hvals">
+        function <span class="apidocSignatureSpan">redis-mock.hash.</span>hvals
+        <span class="apidocSignatureSpan">(mockInstance, hash, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">hvals = function (mockInstance, hash, callback) {
+
+  var list = [];
+
+  if (mockInstance.storage[hash] &#x26;&#x26; mockInstance.storage[hash].type !== &#x22;hash&#x22;) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+  }
+  if (mockInstance.storage[hash]) {
+    for (var k in mockInstance.storage[hash].value) {
+      list.push(mockInstance.storage[hash].value[k]);
+    }
+  }
+
+  mockInstance._callCallback(callback, null, list);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.helpers" id="apidoc.module.redis-mock.helpers">module redis-mock.helpers</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.helpers.initKey" id="apidoc.element.redis-mock.helpers.initKey">
+        function <span class="apidocSignatureSpan">redis-mock.helpers.</span>initKey
+        <span class="apidocSignatureSpan">(mockInstance, key, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">initKey = function (mockInstance, key, fn) {
+  mockInstance.storage[key] = mockInstance.storage[key] || fn();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var mockCallback = helpers.mockCallback;
+
+var validKeyType = function(mockInstance, key, callback) {
+return helpers.validKeyType(mockInstance, key, &#x27;list&#x27;, callback)
+};
+
+var initKey = function(mockInstance, key) {
+return helpers.<span class="apidocCodeKeywordSpan">initKey</span>(mockInstance, key, Item.createList);
+};
+
+/**
+ * Llen
+ */
+exports.llen = function (mockInstance, key, callback) {
+var length = mockInstance.storage[key] ? mockInstance.storage[key].value.length : 0;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.helpers.mockCallback" id="apidoc.element.redis-mock.helpers.mockCallback">
+        function <span class="apidocSignatureSpan">redis-mock.helpers.</span>mockCallback
+        <span class="apidocSignatureSpan">(err, reply)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">mockCallback = function (err, reply) {}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.helpers.parseCallback" id="apidoc.element.redis-mock.helpers.parseCallback">
+        function <span class="apidocSignatureSpan">redis-mock.helpers.</span>parseCallback
+        <span class="apidocSignatureSpan">(args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseCallback = function (args) {
+  var callback;
+  var len = args.length;
+  if (&#x27;function&#x27; === typeof args[len - 1]) {
+    callback = args[len-1];
+  }
+  return callback;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var push = function (fn, args) {
+var len = args.length;
+if (len &#x3c; 2) {
+  return
+}
+var mockInstance = args[0];
+var key = args[1];
+var callback = helpers.<span class="apidocCodeKeywordSpan">parseCallback</span>(args);
+if (callback == undefined) {
+  callback = mockCallback;
+}
+if (!validKeyType(mockInstance, key, callback)) {
+  return
+}
+// init key
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.helpers.patternToRegex" id="apidoc.element.redis-mock.helpers.patternToRegex">
+        function <span class="apidocSignatureSpan">redis-mock.helpers.</span>patternToRegex
+        <span class="apidocSignatureSpan">(pattern)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">patternToRegex = function (pattern) {
+  var fixed = pattern.replace(patternChanger, function(matched) { return charMap[matched] });
+  return new RegExp(&#x27;^&#x27; + fixed + &#x27;$&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.helpers.validKeyType" id="apidoc.element.redis-mock.helpers.validKeyType">
+        function <span class="apidocSignatureSpan">redis-mock.helpers.</span>validKeyType
+        <span class="apidocSignatureSpan">(mockInstance, key, type, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validKeyType = function (mockInstance, key, type, callback) {
+  if (mockInstance.storage[key] &#x26;&#x26; mockInstance.storage[key].type !== type) {
+    var err = new Error(&#x27;WRONGTYPE Operation against a key holding the wrong kind of value&#x27;);
+    mockInstance._callCallback(callback, err);
+    return false;
+  }
+  return true;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var helpers = require(&#x22;./helpers.js&#x22;);
+var Item = require(&#x22;./item.js&#x22;);
+
+
+var mockCallback = helpers.mockCallback;
+
+var validKeyType = function(mockInstance, key, callback) {
+  return helpers.<span class="apidocCodeKeywordSpan">validKeyType</span>(mockInstance, key, &#x27;list&#x27;, callback)
+};
+
+var initKey = function(mockInstance, key) {
+  return helpers.initKey(mockInstance, key, Item.createList);
+};
+
+/**
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.item" id="apidoc.module.redis-mock.item">module redis-mock.item</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item._hash" id="apidoc.element.redis-mock.item._hash">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>_hash
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_hash = function () {
+  RedisItem.call(this, &#x22;hash&#x22;);
+  this.value = {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item._item" id="apidoc.element.redis-mock.item._item">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>_item
+        <span class="apidocSignatureSpan">(type, expire)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_item = function (type, expire) {
+  // We keep type so we don&#x27;t have to use instanceof maybe this
+  // can be changed to something more clever
+  this.type = type || 0;
+  this.expires = expire || -1;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item._list" id="apidoc.element.redis-mock.item._list">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>_list
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_list = function () {
+  RedisItem.call(this, &#x22;list&#x22;);
+  this.value = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item._set" id="apidoc.element.redis-mock.item._set">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>_set
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_set = function () {
+  RedisItem.call(this, &#x22;set&#x22;);
+  this.value = [];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item._sortedset" id="apidoc.element.redis-mock.item._sortedset">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>_sortedset
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_sortedset = function () {
+  RedisItem.call(this, &#x22;sortedset&#x22;);
+  this.value = {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item._string" id="apidoc.element.redis-mock.item._string">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>_string
+        <span class="apidocSignatureSpan">(value, expires)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_string = function (value, expires) {
+  RedisItem.call(this, &#x22;string&#x22;, expires);
+  this.value = String(value);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item._stringify" id="apidoc.element.redis-mock.item._stringify">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>_stringify
+        <span class="apidocSignatureSpan">(value)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_stringify = function (value) {
+  return typeof(value) === &#x22;object&#x22; ?
+    JSON.stringify(value) :
+    value + &#x27;&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+  len = mockInstance.storage[key].value.length;
+  if (len &#x3c;= index || -len &#x3e; index) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR index out of range&#x22;));
+  }
+  if (index &#x3c; 0) {
+    mockInstance.storage[key].value[len + index] = Item.<span class="apidocCodeKeywordSpan">_stringify</span>(value);
+  } else {
+    mockInstance.storage[key].value[index] = Item._stringify(value);
+  }
+  mockInstance._callCallback(callback, null, res);
+};
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item.createHash" id="apidoc.element.redis-mock.item.createHash">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>createHash
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createHash = function () {
+  return new RedisHash();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      return mockInstance._callCallback(callback,
+        new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+    }
+    if (mockInstance.storage[hash].value[key]) {
+      update = true;
+    }
+  } else {
+    mockInstance.storage[hash] = Item.<span class="apidocCodeKeywordSpan">createHash</span>();
+  }
+
+  mockInstance.storage[hash].value[key] = value;
+
+  mockInstance._callCallback(callback, null, update ? 0 : 1);
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item.createList" id="apidoc.element.redis-mock.item.createList">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>createList
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createList = function () {
+  return new RedisList();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item.createSet" id="apidoc.element.redis-mock.item.createSet">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>createSet
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createSet = function () {
+  return new RedisSet();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ */
+exports.sadd = function (mockInstance, key, members, callback) {
+if (mockInstance.storage[key] &#x26;&#x26; mockInstance.storage[key].type !== &#x27;set&#x27;) {
+  var err = new Error(&#x27;WRONGTYPE Operation against a key holding the wrong kind of value&#x27;);
+  return mockInstance._callCallback(callback, err);
+}
+
+mockInstance.storage[key] = mockInstance.storage[key] || new Item.<span class="apidocCodeKeywordSpan">createSet</span>();
+
+var set = mockInstance.storage[key].value;
+var addCount = 0;
+for (var i = 0; i &#x3c; members.length; i++) {
+  if (set.indexOf(Item._stringify(members[i])) &#x3c; 0) {
+    set.push(Item._stringify(members[i]));
+    addCount++;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item.createSortedSet" id="apidoc.element.redis-mock.item.createSortedSet">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>createSortedSet
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createSortedSet = function () {
+  return new RedisSortedSet();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.item.createString" id="apidoc.element.redis-mock.item.createString">
+        function <span class="apidocSignatureSpan">redis-mock.item.</span>createString
+        <span class="apidocSignatureSpan">(elt, expire)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">createString = function (elt, expire) {
+  return new RedisString(elt, expire);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var Item = require(&#x22;./item.js&#x22;);
+
+/**
+* Set
+*/
+exports.set = function (mockInstance, key, value, callback) {
+
+ mockInstance.storage[key] = Item.<span class="apidocCodeKeywordSpan">createString</span>(value);
+
+ mockInstance._callCallback(callback, null, &#x22;OK&#x22;);
+};
+
+/**
+* Ping
+*/
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.keys" id="apidoc.module.redis-mock.keys">module redis-mock.keys</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.keys.keys" id="apidoc.element.redis-mock.keys.keys">
+        function <span class="apidocSignatureSpan">redis-mock.</span>keys
+        <span class="apidocSignatureSpan">(mockInstance, pattern, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">keys = function (mockInstance, pattern, callback) {
+  var regex = patternToRegex(pattern);
+  var keys = [];
+
+  for (var key in mockInstance.storage) {
+    if (regex.test(key)) {
+      keys.push(key);
+    }
+  }
+
+  mockInstance._callCallback(callback, null, keys);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ */
+exports.punsubscribe = function () {
+var self = this
+  , subcriptions = arguments;
+
+// Unsubscribe from ALL channels
+if (!arguments.length) {
+  subcriptions = Object.<span class="apidocCodeKeywordSpan">keys</span>(self.psubscriptions);
+  this.pub_sub_mode = false;
+}
+
+for (var i = 0; i &#x3c; subcriptions.length; i++) {
+  if (&#x27;string&#x27; == typeof arguments[i]) {
+    // Event on next tick to emulate an actual server call
+    var channelName = arguments[i];
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.keys.del" id="apidoc.element.redis-mock.keys.del">
+        function <span class="apidocSignatureSpan">redis-mock.keys.</span>del
+        <span class="apidocSignatureSpan">(mockInstance, keys, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">del = function (mockInstance, keys, callback) {
+
+  if (!(keys instanceof Array)) {
+    keys = [keys];
+  }
+
+  var keysDeleted = 0;
+
+  for (var i = 0; i &#x3c; keys.length; i++) {
+
+    if (keys[i] in mockInstance.storage) {
+
+      delete mockInstance.storage[keys[i]];
+      keysDeleted++;
+
+    }
+  }
+
+  mockInstance._callCallback(callback, null, keysDeleted);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.keys.exists" id="apidoc.element.redis-mock.keys.exists">
+        function <span class="apidocSignatureSpan">redis-mock.keys.</span>exists
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">exists = function (mockInstance, key, callback) {
+
+  var result = key in mockInstance.storage ? 1 : 0;
+
+  mockInstance._callCallback(callback, null, result);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.keys.expire" id="apidoc.element.redis-mock.keys.expire">
+        function <span class="apidocSignatureSpan">redis-mock.keys.</span>expire
+        <span class="apidocSignatureSpan">(mockInstance, key, seconds, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">expire = function (mockInstance, key, seconds, callback) {
+
+  var result = 0;
+
+  var obj = mockInstance.storage[key];
+
+  if (obj) {
+    var now = new Date().getTime();
+    var milli = Math.min(seconds*1000, Math.pow(2, 31) - 1);
+
+    if (mockInstance.storage[key]._expire) {
+      clearTimeout(mockInstance.storage[key]._expire);
+    }
+
+    mockInstance.storage[key].expires = new Date(now + milli);
+    mockInstance.storage[key]._expire = setTimeout(function() {
+      delete mockInstance.storage[key];
+    }, milli);
+
+    result = 1;
+  }
+
+  mockInstance._callCallback(callback, null, result);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.keys.ttl" id="apidoc.element.redis-mock.keys.ttl">
+        function <span class="apidocSignatureSpan">redis-mock.keys.</span>ttl
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ttl = function (mockInstance, key, callback) {
+  var result = 0;
+
+  var obj = mockInstance.storage[key];
+
+  if (obj) {
+    var now = new Date().getTime();
+    var expires = mockInstance.storage[key].expires instanceof Date ? mockInstance.storage[key].expires.getTime() : -1;
+    var seconds = (expires - now) / 1000;
+
+    if (seconds &#x3e; 0) {
+      result = seconds;
+    } else {
+      result = -1;
+    }
+
+  } else {
+    result = -2;
+  }
+
+  mockInstance._callCallback(callback, null, result);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.list" id="apidoc.module.redis-mock.list">module redis-mock.list</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.blpop" id="apidoc.element.redis-mock.list.blpop">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>blpop
+        <span class="apidocSignatureSpan">(mockInstance, keys, timeout, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">blpop = function (mockInstance, keys, timeout, callback) {
+  bpop.call(this, Item._list.prototype.lpop, mockInstance, keys, timeout, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.brpop" id="apidoc.element.redis-mock.list.brpop">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>brpop
+        <span class="apidocSignatureSpan">(mockInstance, keys, timeout, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">brpop = function (mockInstance, keys, timeout, callback) {
+  bpop.call(this, Item._list.prototype.rpop, mockInstance, keys, timeout, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.lindex" id="apidoc.element.redis-mock.list.lindex">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>lindex
+        <span class="apidocSignatureSpan">(mockInstance, key, index, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lindex = function (mockInstance, key, index, callback) {
+  var val = null;
+  if (mockInstance.storage[key]) {
+    if (mockInstance.storage[key].type !== &#x22;list&#x22;) {
+      return mockInstance._callCallback(callback,
+        new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+    }
+
+    if (index &#x3c; 0 &#x26;&#x26; -mockInstance.storage[key].value.length &#x3c;= index) {
+      val = mockInstance.storage[key].value[mockInstance.storage[key].value.length + index];
+    } else if (mockInstance.storage[key].value.length &#x3e; index) {
+      val = mockInstance.storage[key].value[index];
+    }
+  }
+  mockInstance._callCallback(callback, null, val);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.llen" id="apidoc.element.redis-mock.list.llen">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>llen
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">llen = function (mockInstance, key, callback) {
+  var length = mockInstance.storage[key] ? mockInstance.storage[key].value.length : 0;
+  mockInstance._callCallback(callback, null, length);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.lpop" id="apidoc.element.redis-mock.list.lpop">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>lpop
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lpop = function (mockInstance, key, callback) {
+  pop.call(this, Item._list.prototype.lpop, mockInstance, key, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.lpush" id="apidoc.element.redis-mock.list.lpush">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>lpush
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lpush = function () {
+  push(Item._list.prototype.lpush, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.lpushx" id="apidoc.element.redis-mock.list.lpushx">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>lpushx
+        <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lpushx = function (mockInstance, key, value, callback) {
+  pushx(Item._list.prototype.lpush, mockInstance, key, value, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.lrange" id="apidoc.element.redis-mock.list.lrange">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>lrange
+        <span class="apidocSignatureSpan">(mockInstance, key, startIndex, stopIndex, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lrange = function (mockInstance, key, startIndex, stopIndex, callback) {
+  var val = [];
+  var index1 = startIndex;
+  var index2 = stopIndex;
+
+  if (mockInstance.storage[key]) {
+    if (mockInstance.storage[key].type !== &#x22;list&#x22;) {
+      return mockInstance._callCallback(callback,
+        new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+    }
+
+    index1 = index1 &#x3e;= 0 ? index1 : Math.max(mockInstance.storage[key].value.length + index1, 0);
+    index2 = index2 &#x3e;= 0 ? index2 : Math.max(mockInstance.storage[key].value.length + index2, 0);
+    val = mockInstance.storage[key].value.slice(index1, index2 + 1);
+  }
+  mockInstance._callCallback(callback, null, val);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.lset" id="apidoc.element.redis-mock.list.lset">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>lset
+        <span class="apidocSignatureSpan">(mockInstance, key, index, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lset = function (mockInstance, key, index, value, callback) {
+  var res = &#x22;OK&#x22;;
+  var len = -1;
+  if (!mockInstance.storage[key]) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR no such key&#x22;));
+  }
+  if (mockInstance.storage[key].type !== &#x22;list&#x22;) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;));
+  }
+  len = mockInstance.storage[key].value.length;
+  if (len &#x3c;= index || -len &#x3e; index) {
+    return mockInstance._callCallback(callback,
+      new Error(&#x22;ERR index out of range&#x22;));
+  }
+  if (index &#x3c; 0) {
+    mockInstance.storage[key].value[len + index] = Item._stringify(value);
+  } else {
+    mockInstance.storage[key].value[index] = Item._stringify(value);
+  }
+  mockInstance._callCallback(callback, null, res);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.rpop" id="apidoc.element.redis-mock.list.rpop">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>rpop
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">rpop = function (mockInstance, key, callback) {
+  pop.call(this, Item._list.prototype.rpop, mockInstance, key, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.rpush" id="apidoc.element.redis-mock.list.rpush">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>rpush
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">rpush = function () {
+  push(Item._list.prototype.rpush, arguments);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.list.rpushx" id="apidoc.element.redis-mock.list.rpushx">
+        function <span class="apidocSignatureSpan">redis-mock.list.</span>rpushx
+        <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">rpushx = function (mockInstance, key, value, callback) {
+  pushx(Item._list.prototype.rpush, mockInstance, key, value, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.multi" id="apidoc.module.redis-mock.multi">module redis-mock.multi</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.multi.multi" id="apidoc.element.redis-mock.multi.multi">
+        function <span class="apidocSignatureSpan">redis-mock.</span>multi
+        <span class="apidocSignatureSpan">(commands)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">multi = function (commands) {
+  var result = new Multi(this);
+  if(commands) {
+    commands.forEach(function (command) {
+      result._command(command[0], command.slice(1));
+    });
+  }
+  return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.pubsub" id="apidoc.module.redis-mock.pubsub">module redis-mock.pubsub</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.pubsub.psubscribe" id="apidoc.element.redis-mock.pubsub.psubscribe">
+        function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>psubscribe
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">psubscribe = function () {
+  var self = this;
+  if (!arguments.length) { return; }
+  this.pub_sub_mode = true;
+
+  for (var i = 0; i &#x3c; arguments.length; i++) {
+    if (&#x27;string&#x27; == typeof arguments[i]) {
+      // Event on next tick to emulate an actual server call
+      var channelName = arguments[i];
+      process.nextTick(function () {
+        self.psubscriptions[channelName] = patternToRegex(channelName);
+        self.emit(&#x27;psubscribe&#x27;, channelName);
+      });
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.pubsub.publish" id="apidoc.element.redis-mock.pubsub.publish">
+        function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>publish
+        <span class="apidocSignatureSpan">(mockInstance, channel, msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">publish = function (mockInstance, channel, msg) {
+
+  this.pub_sub_mode = true;
+  process.nextTick(function () {
+    if ((typeof msg == &#x22;object&#x22;) &#x26;&#x26; (msg !== null)) {
+      msg = JSON.stringify(msg);
+    }
+    mockInstance.emit(&#x27;message&#x27;, channel, msg);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.pubsub.punsubscribe" id="apidoc.element.redis-mock.pubsub.punsubscribe">
+        function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>punsubscribe
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">punsubscribe = function () {
+  var self = this
+    , subcriptions = arguments;
+
+  // Unsubscribe from ALL channels
+  if (!arguments.length) {
+    subcriptions = Object.keys(self.psubscriptions);
+    this.pub_sub_mode = false;
+  }
+
+  for (var i = 0; i &#x3c; subcriptions.length; i++) {
+    if (&#x27;string&#x27; == typeof arguments[i]) {
+      // Event on next tick to emulate an actual server call
+      var channelName = arguments[i];
+      process.nextTick(function () {
+        delete self.psubscriptions[channelName];
+        self.emit(&#x27;punsubscribe&#x27;, channelName);
+      });
+    }
+  }
+  // TODO: If this was the last subscription, pub_sub_mode should be set to false
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.pubsub.subscribe" id="apidoc.element.redis-mock.pubsub.subscribe">
+        function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>subscribe
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">subscribe = function () {
+
+  var self = this;
+
+  if (!arguments.length) {
+    return;
+  }
+
+  this.pub_sub_mode = true;
+
+  for (var i = 0; i &#x3c; arguments.length; i++) {
+
+    if (&#x27;string&#x27; == typeof arguments[i]) {
+
+      // Event on next tick to emulate an actual server call
+      var channelName = arguments[i];
+      process.nextTick(function () {
+        self.subscriptions[channelName] = true;
+        // TODO Should also send length of subscriptions here
+        self.emit(&#x27;subscribe&#x27;, channelName);
+      });
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.pubsub.unsubscribe" id="apidoc.element.redis-mock.pubsub.unsubscribe">
+        function <span class="apidocSignatureSpan">redis-mock.pubsub.</span>unsubscribe
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">unsubscribe = function () {
+
+  var self = this
+    , subcriptions = arguments;
+
+  // TODO: Unsubscribe from ALL channels
+  if (!arguments.length) {
+    subcriptions = self.subscriptions.map(function (__, subscription) {
+      return subscription;
+    })
+  }
+
+  for (var i = 0; i &#x3c; subcriptions.length; i++) {
+
+    if (&#x27;string&#x27; == typeof arguments[i]) {
+
+      // Event on next tick to emulate an actual server call
+      var channelName = arguments[i];
+      process.nextTick(function () {
+        self.subscriptions[channelName] = false;
+        delete self.subscriptions[channelName];
+        self.emit(&#x27;unsubscribe&#x27;, channelName);
+      });
+    }
+  }
+
+  // TODO: If this was the last subscription, pub_sub_mode should be set to false
+  this.pub_sub_mode = false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.server" id="apidoc.module.redis-mock.server">module redis-mock.server</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.server.auth" id="apidoc.element.redis-mock.server.auth">
+        function <span class="apidocSignatureSpan">redis-mock.server.</span>auth
+        <span class="apidocSignatureSpan">(mockInstance, password, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function auth(mockInstance, password, callback) {
+  mockInstance._callCallback(callback, null, &#x27;OK&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.server.flushall" id="apidoc.element.redis-mock.server.flushall">
+        function <span class="apidocSignatureSpan">redis-mock.server.</span>flushall
+        <span class="apidocSignatureSpan">(mockInstance, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">flushall = function (mockInstance, callback) {
+  mockInstance.storage = {};
+
+  mockInstance._callCallback(callback, null, &#x27;OK&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.server.flushdb" id="apidoc.element.redis-mock.server.flushdb">
+        function <span class="apidocSignatureSpan">redis-mock.server.</span>flushdb
+        <span class="apidocSignatureSpan">(mockInstance, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">flushdb = function (mockInstance, callback) {
+  mockInstance.storage = {};
+
+  mockInstance._callCallback(callback, null, &#x27;OK&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.set" id="apidoc.module.redis-mock.set">module redis-mock.set</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.set.sadd" id="apidoc.element.redis-mock.set.sadd">
+        function <span class="apidocSignatureSpan">redis-mock.set.</span>sadd
+        <span class="apidocSignatureSpan">(mockInstance, key, members, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sadd = function (mockInstance, key, members, callback) {
+  if (mockInstance.storage[key] &#x26;&#x26; mockInstance.storage[key].type !== &#x27;set&#x27;) {
+    var err = new Error(&#x27;WRONGTYPE Operation against a key holding the wrong kind of value&#x27;);
+    return mockInstance._callCallback(callback, err);
+  }
+
+  mockInstance.storage[key] = mockInstance.storage[key] || new Item.createSet();
+
+  var set = mockInstance.storage[key].value;
+  var addCount = 0;
+  for (var i = 0; i &#x3c; members.length; i++) {
+    if (set.indexOf(Item._stringify(members[i])) &#x3c; 0) {
+      set.push(Item._stringify(members[i]));
+      addCount++;
+    }
+  }
+
+  mockInstance._callCallback(callback, null, addCount);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.set.scard" id="apidoc.element.redis-mock.set.scard">
+        function <span class="apidocSignatureSpan">redis-mock.set.</span>scard
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">scard = function (mockInstance, key, callback) {
+  var count = 0;
+
+  if (mockInstance.storage[key]) {
+    if (mockInstance.storage[key].type !== &#x27;set&#x27;) {
+      var err = new Error(&#x27;WRONGTYPE Operation against a key holding the wrong kind of value&#x27;);
+      return mockInstance._callCallback(callback, err);
+    } else {
+      var set = mockInstance.storage[key].value;
+      count = set.length;
+    }
+  }
+
+  mockInstance._callCallback(callback, null, count);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.set.sismember" id="apidoc.element.redis-mock.set.sismember">
+        function <span class="apidocSignatureSpan">redis-mock.set.</span>sismember
+        <span class="apidocSignatureSpan">(mockInstance, key, member, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sismember = function (mockInstance, key, member, callback) {
+  if (mockInstance.storage[key]) {
+    if (mockInstance.storage[key].type !== &#x27;set&#x27;) {
+      var err = new Error(&#x27;WRONGTYPE Operation against a key holding the wrong kind of value&#x27;);
+      return mockInstance._callCallback(callback, err);
+    }
+  }
+  member = Item._stringify(member);
+  var count = (mockInstance.storage[key].value.indexOf(member) &#x3e; -1) ? 1 : 0;
+  mockInstance._callCallback(callback, null, count);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.set.smembers" id="apidoc.element.redis-mock.set.smembers">
+        function <span class="apidocSignatureSpan">redis-mock.set.</span>smembers
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">smembers = function (mockInstance, key, callback) {
+  var members = null;
+
+  if (mockInstance.storage[key]) {
+    if (mockInstance.storage[key].type !== &#x27;set&#x27;) {
+      var err = new Error(&#x27;WRONGTYPE Operation against a key holding the wrong kind of value&#x27;);
+      return mockInstance._callCallback(callback, err);
+    } else {
+      members = mockInstance.storage[key].value;
+    }
+  }
+
+  mockInstance._callCallback(callback, null, members);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.set.srem" id="apidoc.element.redis-mock.set.srem">
+        function <span class="apidocSignatureSpan">redis-mock.set.</span>srem
+        <span class="apidocSignatureSpan">(mockInstance, key, members, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">srem = function (mockInstance, key, members, callback) {
+  var remCount = 0;
+
+  if (mockInstance.storage[key]) {
+
+    if (mockInstance.storage[key].type !== &#x27;set&#x27;) {
+      var err = new Error(&#x27;WRONGTYPE Operation against a key holding the wrong kind of value&#x27;);
+      return mockInstance._callCallback(callback, err);
+
+    } else {
+      var set = mockInstance.storage[key].value;
+      for (var i = 0; i &#x3c; members.length; i++) {
+        for (var j = 0; j &#x3c; set.length; j++) {
+          if (set[j] == Item._stringify(members[i])) {
+            set.splice(j, 1);
+            remCount++;
+          }
+        }
+      }
+    }
+  }
+
+  mockInstance._callCallback(callback, null, remCount);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.sortedset" id="apidoc.module.redis-mock.sortedset">module redis-mock.sortedset</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zadd" id="apidoc.element.redis-mock.sortedset.zadd">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zadd
+        <span class="apidocSignatureSpan">(mockInstance, key)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zadd = function (mockInstance, key) {
+
+  var len = arguments.length;
+  if (len &#x3c;= 3) {
+    return
+  }
+  var callback = helpers.parseCallback(arguments);
+  if (!validKeyType(mockInstance, key, callback)) {
+    return
+  }
+  // init key
+  initKey(mockInstance, key);
+
+  // declare opts
+  var nx = false, xx = false, ch = false, incr = false;
+  var start = 2, count = 0;
+
+  for (var i=start; i &#x3c; len; i++) {
+    var opt = arguments[i];
+    opt = opt.toString().toLowerCase();
+    // Don&#x27;t update already existing elements. Always add new elements.
+    if (opt === &#x27;nx&#x27;) {
+      nx = true;
+      continue;
+    }
+    // Only update elements that already exist. Never add elements.
+    if (opt === &#x27;xx&#x27;) {
+      xx = true;
+      continue;
+    }
+    // Total number of elements changed
+    if (opt === &#x27;ch&#x27;) {
+      ch = true;
+      continue;
+    }
+    if (opt === &#x27;incr&#x27;) {
+      incr = true;
+      continue;
+    }
+    start = i;
+    break;
+
+  }
+
+  for (var i = start; i &#x3c; len; i += 2) {
+    // hold the score and make sure it isn&#x27;t an opt
+    var score = arguments[i];
+
+    // did we reach the end?
+    if (len &#x3c;= (i + 1)) {
+        break;
+    }
+    var member = Item._stringify(arguments[i + 1]);
+    var existingScore = mockInstance.storage[key].value[member];
+    var exists = existingScore != undefined;
+
+    // process opts
+    if ((nx &#x26;&#x26; exists) || (xx &#x26;&#x26; !exists)) {
+      continue;
+    }
+    // convert score to string
+    score = score.toString();
+
+    // updating score if memeber doesn&#x27;t exist
+    // or if ch = true and score changes
+    if (!exists || (ch &#x26;&#x26; existingScore != score)) {
+      count += 1;
+    }
+
+    // do we need to incr (existing score + score)?
+    if (incr &#x26;&#x26; existingScore) {
+      score = parseFloat(existingScore) + parseFloat(score);
+      score = String(score);
+    }
+
+    // update score
+    mockInstance.storage[key].value[member] = score;
+
+    // only one member is allowed update
+    // if we have an incr
+    // this shold behave the same as zincrby
+    // so return the score instead of the updatedCount;
+    if (incr) {
+      count = score;
+      break;
+    }
+  }
+
+  if (callback) {
+    mockInstance._callCallback(callback, null, count);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zcard" id="apidoc.element.redis-mock.sortedset.zcard">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zcard
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zcard = function (mockInstance, key, callback) {
+  var len = arguments.length;
+  if (len &#x3c; 1) {
+    return
+  }
+  if (callback == undefined) {
+    callback = mockCallback;
+  }
+  if (!validKeyType(mockInstance, key, callback)) {
+    return
+  }
+  initKey(mockInstance, key);
+  var count = Object.keys(mockInstance.storage[key].value).length;
+  mockInstance._callCallback(callback, null, count);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zcount" id="apidoc.element.redis-mock.sortedset.zcount">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zcount
+        <span class="apidocSignatureSpan">(mockInstance, key, min, max, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zcount = function (mockInstance, key, min, max, callback) {
+  var parse = function(err, result) {
+    if (err) {
+      return mockInstance._callCallback(callback, err);
+    }
+    mockInstance._callCallback(callback, null, result.length);
+  }
+  exports.zrangebyscore(mockInstance, key, min, max, parse);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zincrby" id="apidoc.element.redis-mock.sortedset.zincrby">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zincrby
+        <span class="apidocSignatureSpan">(mockInstance, key, increment, member, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zincrby = function (mockInstance, key, increment, member, callback) {
+  var len = arguments.length;
+  if (len &#x3c; 4) {
+    return
+  }
+  if (callback == undefined) {
+    callback = mockCallback;
+  }
+  if (!validKeyType(mockInstance, key, callback)) {
+    return
+  }
+  initKey(mockInstance, key);
+  member = Item._stringify(member);
+  var s = mockInstance.storage[key].value[member];
+  var score = parseFloat( s !== undefined ? s : &#x27;0&#x27;);
+  increment = parseFloat(String(increment));
+  score += increment;
+  score = String(score);
+  mockInstance.storage[key].value[member] = score;
+  mockInstance._callCallback(callback, null, score);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zrange" id="apidoc.element.redis-mock.sortedset.zrange">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrange
+        <span class="apidocSignatureSpan">(mockInstance, key, start, stop, withscores, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zrange = function (mockInstance, key, start, stop, withscores, callback) {
+  getRange(mockInstance, key, start, stop, withscores, callback, false);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zrangebyscore" id="apidoc.element.redis-mock.sortedset.zrangebyscore">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrangebyscore
+        <span class="apidocSignatureSpan">( mockInstance, key, min, max, withscores, limit, offset, count, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zrangebyscore = function ( mockInstance, key, min, max, withscores, limit, offset, count, callback) {
+
+  getRangeByScore(
+    mockInstance,
+    key,
+    min,
+    max,
+    withscores,
+    limit,
+    offset,
+    count,
+    callback,
+    false);
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+exports.zcount = function(mockInstance, key, min, max, callback) {
+var parse = function(err, result) {
+  if (err) {
+    return mockInstance._callCallback(callback, err);
+  }
+  mockInstance._callCallback(callback, null, result.length);
+}
+exports.<span class="apidocCodeKeywordSpan">zrangebyscore</span>(mockInstance, key, min, max, parse);
+}
+
+// ZINCRBY key increment member
+// Increment the score of a member in a sorted set
+exports.zincrby = function(mockInstance, key, increment, member, callback) {
+var len = arguments.length;
+if (len &#x3c; 4) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zrank" id="apidoc.element.redis-mock.sortedset.zrank">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrank
+        <span class="apidocSignatureSpan">(mockInstance, key, member, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zrank = function (mockInstance, key, member, callback) {
+  getRank(mockInstance, key, member, callback, false);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zrem" id="apidoc.element.redis-mock.sortedset.zrem">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrem
+        <span class="apidocSignatureSpan">(mockInstance, key)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zrem = function (mockInstance, key) {
+  var len = arguments.length;
+  if (len &#x3c;= 3) {
+    return
+  }
+
+  var callback = helpers.parseCallback(arguments);
+  if (callback == undefined) {
+    callback = mockCallback;
+  }
+  if (!validKeyType(mockInstance, key, callback)) {
+    return
+  }
+  initKey(mockInstance, key);
+  // The number of members removed from the sorted set,
+  // not including non existing members.
+  var count = 0;
+  for (var i=2, member; i &#x3c; len; i++) {
+    member = arguments[i];
+    if (&#x27;function&#x27; == typeof member) {
+      break;
+    }
+    member = Item._stringify(member);
+    if (mockInstance.storage[key].value[member]) {
+      delete mockInstance.storage[key].value[member];
+      count += 1;
+    }
+  }
+  mockInstance._callCallback(callback, null, count);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zremrangebyrank" id="apidoc.element.redis-mock.sortedset.zremrangebyrank">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zremrangebyrank
+        <span class="apidocSignatureSpan">(mockInstance, key, start, stop, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zremrangebyrank = function (mockInstance, key, start, stop, callback) {
+
+  var deleteResults = function(err, results) {
+    if (err) {
+      return mockInstance._callCallback(callback, err);
+    }
+    var count = 0;
+    for (var i=0, member; i &#x3c; results.length; i++) {
+      member = results[i];
+      if (mockInstance.storage[key].value[member]) {
+        delete mockInstance.storage[key].value[member];
+        count += 1;
+      }
+    }
+    mockInstance._callCallback(callback, null, count);
+  }
+  getRange(mockInstance, key, start, stop, deleteResults, false);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zremrangebyscore" id="apidoc.element.redis-mock.sortedset.zremrangebyscore">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zremrangebyscore
+        <span class="apidocSignatureSpan">(mockInstance, key, min, max, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zremrangebyscore = function (mockInstance, key, min, max, callback) {
+
+  var deleteResults = function(err, results) {
+    if (err) {
+      return mockInstance._callCallback(callback, err);
+    }
+    var count = 0;
+    for (var i=0, member; i &#x3c; results.length; i++) {
+      member = results[i];
+      if (mockInstance.storage[key].value[member]) {
+        delete mockInstance.storage[key].value[member];
+        count += 1;
+      }
+    }
+    mockInstance._callCallback(callback, null, count);
+  }
+  getRangeByScore(mockInstance, key, min, max, deleteResults, false);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zrevrange" id="apidoc.element.redis-mock.sortedset.zrevrange">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrevrange
+        <span class="apidocSignatureSpan">(mockInstance, key, start, stop, withscores, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zrevrange = function (mockInstance, key, start, stop, withscores, callback) {
+  getRange(mockInstance, key, start, stop, withscores, callback, true);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zrevrangebyscore" id="apidoc.element.redis-mock.sortedset.zrevrangebyscore">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrevrangebyscore
+        <span class="apidocSignatureSpan">( mockInstance, key, max, min, withscores, limit, offset, count, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zrevrangebyscore = function ( mockInstance, key, max, min, withscores, limit, offset, count, callback) {
+
+  getRangeByScore(
+    mockInstance,
+    key,
+    min,
+    max,
+    withscores,
+    limit,
+    offset,
+    count,
+    callback,
+    true);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zrevrank" id="apidoc.element.redis-mock.sortedset.zrevrank">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zrevrank
+        <span class="apidocSignatureSpan">(mockInstance, key, member, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zrevrank = function (mockInstance, key, member, callback) {
+  getRank(mockInstance, key, member, callback, true);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.sortedset.zscore" id="apidoc.element.redis-mock.sortedset.zscore">
+        function <span class="apidocSignatureSpan">redis-mock.sortedset.</span>zscore
+        <span class="apidocSignatureSpan">(mockInstance, key, member, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">zscore = function (mockInstance, key, member, callback) {
+  var len = arguments.length;
+  if (len &#x3c; 3) {
+    return
+  }
+  if (callback == undefined) {
+    callback = mockCallback;
+  }
+  if (!validKeyType(mockInstance, key, callback)) {
+    return
+  }
+  initKey(mockInstance, key);
+  var score = mockInstance.storage[key].value[Item._stringify(member)];
+  mockInstance._callCallback(callback, null, score);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.redis-mock.strings" id="apidoc.module.redis-mock.strings">module redis-mock.strings</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.get" id="apidoc.element.redis-mock.strings.get">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>get
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (mockInstance, key, callback) {
+
+  var value = null;
+  var err = null;
+
+  if (mockInstance.storage[key]) {
+    if (mockInstance.storage[key].type !== &#x22;string&#x22;) {
+      err = new Error(&#x22;WRONGTYPE Operation against a key holding the wrong kind of value&#x22;);
+    } else {
+      value = mockInstance.storage[key].value;
+    }
+  }
+
+  mockInstance._callCallback(callback, err, value);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+/**
+ * Getset
+ */
+exports.getset = function (mockInstance, key, value, callback) {
+
+  exports.<span class="apidocCodeKeywordSpan">get</span>(mockInstance, key, /*callback);,*/ function(err, oldValue) {
+if (err) {
+  return mockInstance._callCallback(callback, err, null);
+}
+
+mockInstance.storage[key] = Item.createString(value);
+
+mockInstance._callCallback(callback, err, oldValue);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.getset" id="apidoc.element.redis-mock.strings.getset">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>getset
+        <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getset = function (mockInstance, key, value, callback) {
+
+  exports.get(mockInstance, key, /*callback);,*/ function(err, oldValue) {
+    if (err) {
+      return mockInstance._callCallback(callback, err, null);
+    }
+
+    mockInstance.storage[key] = Item.createString(value);
+
+    mockInstance._callCallback(callback, err, oldValue);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.incr" id="apidoc.element.redis-mock.strings.incr">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>incr
+        <span class="apidocSignatureSpan">(mockInstance, key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">incr = function (mockInstance, key, callback) {
+
+  function _isInteger(s) {
+    return parseInt(s, 10) == s;
+  }
+
+  if (!mockInstance.storage[key]) {
+    var number = 0 + 1;
+    exports.set(mockInstance, key, number);
+    mockInstance._callCallback(callback, null, number);
+
+  } else if (mockInstance.storage[key].type !== &#x22;string&#x22;) {
+    var err = new Error(&#x22;WRONGTYPE Operation against a key holding the wrong kind of value&#x22;);
+    mockInstance._callCallback(callback, err, null);
+
+  } else if (_isInteger(mockInstance.storage[key].value)) {
+    var number = parseInt(mockInstance.storage[key].value, 10) + 1;
+    exports.set(mockInstance, key, number);
+    mockInstance._callCallback(callback, null, number);
+
+  } else {
+    var err = new Error(&#x22;ERR value is not an integer or out of range&#x22;);
+    mockInstance._callCallback(callback, err, null);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.incrby" id="apidoc.element.redis-mock.strings.incrby">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>incrby
+        <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">incrby = function (mockInstance, key, value, callback) {
+
+  function _isInteger(s) {
+    return parseInt(s, 10) == s;
+  }
+
+  value = parseInt(value);
+
+  if (!mockInstance.storage[key]) {
+    var number = 0 + value;
+    exports.set(mockInstance, key, number);
+    mockInstance._callCallback(callback, null, number);
+
+  } else if (mockInstance.storage[key].type !== &#x22;string&#x22;) {
+    var err = new Error(&#x22;WRONGTYPE Operation against a key holding the wrong kind of value&#x22;);
+    mockInstance._callCallback(callback, err, null);
+
+  } else if (_isInteger(mockInstance.storage[key].value)) {
+    var number = parseInt(mockInstance.storage[key].value, 10) + value;
+    exports.set(mockInstance, key, number);
+    mockInstance._callCallback(callback, null, number);
+
+  } else {
+    var err = new Error(&#x22;ERR value is not an integer or out of range&#x22;);
+    mockInstance._callCallback(callback, err, null);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.incrbyfloat" id="apidoc.element.redis-mock.strings.incrbyfloat">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>incrbyfloat
+        <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">incrbyfloat = function (mockInstance, key, value, callback) {
+
+  function _isFloat(s) {
+    return parseFloat(s, 10) == s;
+  }
+
+  if (!mockInstance.storage[key]) {
+    var number = 0 + parseFloat(value, 10);
+    exports.set(mockInstance, key, number.toString());
+    mockInstance._callCallback(callback, null, number.toString());
+
+  } else if (mockInstance.storage[key].type !== &#x22;string&#x22;) {
+    var err = new Error(&#x22;WRONGTYPE Operation against a key holding the wrong kind of value&#x22;);
+    mockInstance._callCallback(callback, err, null);
+
+  } else if (_isFloat(mockInstance.storage[key].value) &#x26;&#x26; _isFloat(value)) {
+    var number = parseFloat(mockInstance.storage[key].value, 10) + parseFloat(value, 10);
+    exports.set(mockInstance, key, number.toString());
+    mockInstance._callCallback(callback, null, number.toString());
+
+  } else {
+    var err = new Error(&#x22;ERR value is not a valid float&#x22;);
+    mockInstance._callCallback(callback, err, null);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.mget" id="apidoc.element.redis-mock.strings.mget">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>mget
+        <span class="apidocSignatureSpan">(mockInstance)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">mget = function (mockInstance) {
+
+  var keys = [];
+  var err = null;
+
+  // Build up the set of keys
+  if (&#x27;object&#x27; == typeof arguments[1]) {
+    keys = arguments[1];
+  } else {
+    for (var i = 1; i &#x3c; arguments.length; i++) {
+      var key = arguments[i];
+      if (&#x27;function&#x27; !== typeof key) {
+        keys.push(key);
+      }
+    }
+  }
+
+  var values = [];
+  for (var j = 0; j &#x3c; keys.length; j++) {
+    if (mockInstance.storage[keys[j]]) {
+      if (mockInstance.storage[keys[j]].type !== &#x27;string&#x27;) {
+        err = new Error(&#x22;ERR Operation against key &#x22; + keys[j] + &#x22; holding wrong kind of value&#x22;);
+      } else {
+        values.push(mockInstance.storage[keys[j]].value);
+      }
+    } else {
+      values.push(null);
+    }
+  }
+
+  if (&#x27;function&#x27; === typeof arguments[arguments.length - 1]) {
+    mockInstance._callCallback(arguments[arguments.length - 1], err, values);
+  }
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.ping" id="apidoc.element.redis-mock.strings.ping">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>ping
+        <span class="apidocSignatureSpan">(mockInstance, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ping = function (mockInstance, callback) {
+
+  mockInstance._callCallback(callback, null, &#x22;PONG&#x22;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.set" id="apidoc.element.redis-mock.strings.set">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>set
+        <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">set = function (mockInstance, key, value, callback) {
+
+  mockInstance.storage[key] = Item.createString(value);
+
+  mockInstance._callCallback(callback, null, &#x22;OK&#x22;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+* Setnx
+*/
+exports.setnx = function (mockInstance, key, value, callback) {
+ if (key in mockInstance.storage) {
+   mockInstance._callCallback(callback, null, 0);
+ } else {
+   exports.<span class="apidocCodeKeywordSpan">set</span>(mockInstance, key, value, /*callback);,*/ function() {
+     mockInstance._callCallback(callback, null, 1);
+   });
+ }
+};
+
+/**
+* Get
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.redis-mock.strings.setnx" id="apidoc.element.redis-mock.strings.setnx">
+        function <span class="apidocSignatureSpan">redis-mock.strings.</span>setnx
+        <span class="apidocSignatureSpan">(mockInstance, key, value, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setnx = function (mockInstance, key, value, callback) {
+  if (key in mockInstance.storage) {
+    mockInstance._callCallback(callback, null, 0);
+  } else {
+    exports.set(mockInstance, key, value, /*callback);,*/ function() {
+      mockInstance._callCallback(callback, null, 1);
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
