@@ -72,15 +72,6 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.multi">
-            function <span class="apidocSignatureSpan">redis-mock.</span>multi
-            <span class="apidocSignatureSpan">(commands)</span>
-            </a>
-
-        </li>
-
-        <li>
-
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>hash</span>
 
         </li>
@@ -142,19 +133,6 @@
         <li>
 
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">redis-mock.</span>strings</span>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock._callCallback">module redis-mock._callCallback</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.redis-mock._callCallback._callCallback">
-            function <span class="apidocSignatureSpan">redis-mock.</span>_callCallback
-            <span class="apidocSignatureSpan">(callback, err, result)</span>
-            </a>
 
         </li>
 
@@ -603,19 +581,6 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.multi">module redis-mock.multi</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.redis-mock.multi.multi">
-            function <span class="apidocSignatureSpan">redis-mock.</span>multi
-            <span class="apidocSignatureSpan">(commands)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
     <li class="apidocModuleLi"><a href="#apidoc.module.redis-mock.pubsub">module redis-mock.pubsub</a><ol>
 
         <li>
@@ -1000,24 +965,6 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
 
 
-    <h2>
-        <a href="#apidoc.element.redis-mock.multi" id="apidoc.element.redis-mock.multi">
-        function <span class="apidocSignatureSpan">redis-mock.</span>multi
-        <span class="apidocSignatureSpan">(commands)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">multi = function (commands) {
-  var result = new Multi(this);
-  if(commands) {
-    commands.forEach(function (command) {
-      result._command(command[0], command.slice(1));
-    });
-  }
-  return result;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
 
 
 
@@ -1037,48 +984,6 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
 
 
-
-
-
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.redis-mock._callCallback" id="apidoc.module.redis-mock._callCallback">module redis-mock._callCallback</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.redis-mock._callCallback._callCallback" id="apidoc.element.redis-mock._callCallback._callCallback">
-        function <span class="apidocSignatureSpan">redis-mock.</span>_callCallback
-        <span class="apidocSignatureSpan">(callback, err, result)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">_callCallback = function (callback, err, result) {
-  if (callback) {
-    process.nextTick(function () {
-      callback(err, result);
-    });
-  }
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-    if (mockInstance.storage[hash].type === &#x22;hash&#x22;) {
-      value = mockInstance.storage[hash].value[key];
-    } else {
-      err = new Error(&#x22;ERR Operation against a key holding the wrong kind of value&#x22;);
-    }
-  }
-
-  mockInstance.<span class="apidocCodeKeywordSpan">_callCallback</span>(callback, err, value);
-}
-
-/**
- * Hexists
- */
-exports.hexists = function (mockInstance, hash, key, callback) {
-...</pre></li>
-    </ul>
 
 
 </div>
@@ -1112,7 +1017,22 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
   mockInstance._callCallback(callback, null, nb);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    });
+
+    it(&#x22;should delete a value&#x22;, function (done) {
+
+      var r = redismock.createClient();
+
+      r.<span class="apidocCodeKeywordSpan">hdel</span>(testHash, testKey, function (err, result) {
+
+result.should.equal(1);
+
+r.end(true);
+
+done();
+...</pre></li>
     </ul>
 
 
@@ -1139,7 +1059,23 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
   mockInstance._callCallback(callback, err, b);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  var testKeyNotExist = &#x22;myKeyNonExistant&#x22;;
+
+  it(&#x22;should not say that non-existant values exist&#x22;, function (done) {
+
+var r = redismock.createClient();
+
+r.<span class="apidocCodeKeywordSpan">hexists</span>(testHash, testKey, function (err, result) {
+  result.should.equal(0);
+
+  r.end(true);
+
+  done();
+
+});
+...</pre></li>
     </ul>
 
 
@@ -1166,7 +1102,22 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
   mockInstance._callCallback(callback, err, value);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    });
+
+    it(&#x22;should get a value that has been set&#x22;, function (done) {
+
+      var r = redismock.createClient();
+
+      r.<span class="apidocCodeKeywordSpan">hget</span>(testHash, testKey, function (err, result) {
+
+result.should.equal(testValue);
+
+r.end(true);
+
+done();
+...</pre></li>
     </ul>
 
 
@@ -1197,7 +1148,23 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
   mockInstance._callCallback(callback, null, nb === 0 ? null : obj);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  });
+
+  //HGETALL
+  it(&#x22;should be able to get all values for hash&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">hgetall</span>(mHash2, function (err, result) {
+
+should.exist(result);
+
+result.should.have.property(mKey1, mValue1);
+result.should.have.property(mKey2, mValue2);
+result.should.have.property(mKey3, mValue3);
+result.should.have.property(mKey4, mValue4);
+...</pre></li>
     </ul>
 
 
@@ -1233,7 +1200,23 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
   mockInstance._callCallback(callback, null, parseInt(mockInstance.storage[hash].value[key])); //Because HINCRBY returns integers
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var testKey = &#x22;myKeyToIncr&#x22;;
+
+
+  it(&#x22;should increment an attribute of the hash&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">hincrby</span>(testHash, testKey, 2, function (err, result) {
+result.should.equal(2);
+
+r.hget(testHash, testKey, function (err, result) {
+  result.should.equal(&#x22;2&#x22;);
+  r.end(true);
+  done();
+});
+...</pre></li>
     </ul>
 
 
@@ -1272,7 +1255,23 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
   mockInstance._callCallback(callback, null, mockInstance.storage[hash].value[key]);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var num = 2.591;
+  var x2 = num * 2;
+
+  it(&#x22;should increment an attribute of the hash&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">hincrbyfloat</span>(testHash, testKey, num, function (err, result) {
+result.should.equal(num.toString());
+
+r.hget(testHash, testKey, function (err, result) {
+  result.should.equal(num.toString());
+  r.end(true);
+  done();
+});
+...</pre></li>
     </ul>
 
 
@@ -1300,7 +1299,23 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
   mockInstance._callCallback(callback, null, list);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  })
+
+  //HKEYS
+  it(&#x22;should be able to get all keys for hash&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">hkeys</span>(mHash2, function (err, result) {
+
+result.indexOf(mKey1).should.not.equal(-1);
+result.indexOf(mKey2).should.not.equal(-1);
+result.indexOf(mKey3).should.not.equal(-1);
+result.indexOf(mKey4).should.not.equal(-1);
+
+r.end(true);
+...</pre></li>
     </ul>
 
 
@@ -1330,7 +1345,22 @@ exports.hexists = function (mockInstance, hash, key, callback) {
 
   mockInstance._callCallback(callback, null, cnt);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    });
+
+    it(&#x22;should return length 0 when key does not exist&#x22;, function (done) {
+
+      var r = redismock.createClient();
+
+      r.<span class="apidocCodeKeywordSpan">hlen</span>(&#x22;newHash&#x22;, function (err, result) {
+
+result.should.equal(0);
+
+r.end(true);
+
+done();
+...</pre></li>
     </ul>
 
 
@@ -1389,7 +1419,23 @@ exports.hexists = function (mockInstance, hash, key, callback) {
     mockInstance._callCallback(arguments[arguments.length - 1], null, keyValues);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // HMGET
+  it(&#x22;should be able to get multiple keys as multiple arguments&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.hmset(mHash, { mKey3: mValue3, mKey4: mValue4});
+    r.<span class="apidocCodeKeywordSpan">hmget</span>(mHash2, mKey1, mKey2, function (err, result) {
+
+result.should.be.an.Array().and.have.lengthOf(2);
+result.should.eql([mValue1, mValue2]);
+
+r.end(true);
+
+done();
+...</pre></li>
     </ul>
 
 
@@ -1445,7 +1491,22 @@ exports.hexists = function (mockInstance, hash, key, callback) {
     mockInstance._callCallback(callback, null, &#x22;OK&#x22;);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  });
+
+  // HMSET
+  it(&#x22;should be able to set multiple keys as multiple arguments&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">hmset</span>(mHash, mKey1, mValue1, mKey2, mValue2, function (err, result) {
+
+result.should.equal(&#x22;OK&#x22;);
+
+r.end(true);
+
+done();
+...</pre></li>
     </ul>
 
 
@@ -1514,7 +1575,22 @@ exports.hsetnx = function (mockInstance, hash, key, value, callback) {
   }
 
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    });
+  });
+
+  it(&#x22;should set a value that does not exist&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">hsetnx</span>(testHash, testKey2, testValue, function (err, result) {
+
+result.should.equal(1);
+
+r.end(true);
+
+done();
+...</pre></li>
     </ul>
 
 
@@ -1542,7 +1618,23 @@ exports.hsetnx = function (mockInstance, hash, key, value, callback) {
 
   mockInstance._callCallback(callback, null, list);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  });
+
+  //HVALS
+  it(&#x22;should be able to get all vals for hash&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">hvals</span>(mHash2, function (err, result) {
+
+result.should.containEql(mValue1);
+result.should.containEql(mValue2);
+result.should.containEql(mValue3);
+result.should.containEql(mValue4);
+
+r.end(true);
+...</pre></li>
     </ul>
 
 
@@ -1643,7 +1735,24 @@ if (!validKeyType(mockInstance, key, callback)) {
   var fixed = pattern.replace(patternChanger, function(matched) { return charMap[matched] });
   return new RegExp(&#x27;^&#x27; + fixed + &#x27;$&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var badStrings = [&#x22;h^llo&#x22;, &#x22;h?llo&#x22;, &#x22;h*llo&#x22;, &#x22;h.llo&#x22;, &#x22;h(llo&#x22;, &#x22;h)llo&#
+x22;, &#x22;h{llo&#x22;, &#x22;h}llo&#x22;, &#x22;h\\llo&#x22;, &#x22;h[llo&#x22;, &#x22;h]llo&#x22;]
+  testPattern(pattern, goodStrings, badStrings)
+})
+
+})
+
+function testPattern(pattern, passes, fails) {
+var regex = helpers.<span class="apidocCodeKeywordSpan">patternToRegex</span>(pattern)
+withPattern(regex, passes, true)
+withPattern(regex, fails, false)
+}
+
+function withPattern(regex, strings, expected) {
+strings.forEach(function (x) {
+  should.equal(regex.test(x), expected)
+...</pre></li>
     </ul>
 
 
@@ -1860,7 +1969,23 @@ var initKey = function(mockInstance, key) {
     <li>description and source-code<pre class="apidocCodePre">createList = function () {
   return new RedisList();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+item.value.should.eql({});
+  });
+});
+
+describe(&#x22;Item.createList&#x22;, function () {
+  it(&#x27;should create an empty list&#x27;, function () {
+var elt = &#x22;foo&#x22;;
+var item = RedisItem.<span class="apidocCodeKeywordSpan">createList</span>();
+
+item.type.should.equal(&#x22;list&#x22;);
+item.expires.should.equal(-1);
+item.value.should.eql([]);
+should.exist(item.lpush);
+should.exist(item.lpop);
+should.exist(item.rpush);
+...</pre></li>
     </ul>
 
 
@@ -1906,7 +2031,22 @@ for (var i = 0; i &#x3c; members.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">createSortedSet = function () {
   return new RedisSortedSet();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    item.expires.should.equal(1000);
+    item.value.should.equal(elt);
+  });
+});
+
+describe(&#x22;Item.createSortedSet&#x22;, function () {
+  it(&#x27;should create an empty sortedset&#x27;, function () {
+    var item = RedisItem.<span class="apidocCodeKeywordSpan">createSortedSet</span>();
+
+    item.type.should.equal(&#x22;sortedset&#x22;);
+    item.expires.should.equal(-1);
+    item.value.should.eql({});
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -2014,7 +2154,24 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, keysDeleted);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+redismock = require(&#x27;redis&#x27;);
+}
+
+describe(&#x22;del&#x22;, function () {
+
+it(&#x22;should do nothing with non-existant keys&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.<span class="apidocCodeKeywordSpan">del</span>([&#x22;key1&#x22;, &#x22;key2&#x22;, &#x22;key3&#x22;], function (err, result
+) {
+    result.should.equal(0);
+    r.del(&#x22;key4&#x22;, function (err, result) {
+      result.should.equal(0);
+      r.end(true);
+      done();
+    });
+  });
+...</pre></li>
     </ul>
 
 
@@ -2032,7 +2189,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, result);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+describe(&#x22;exists&#x22;, function () {
+
+  it(&#x22;should return 0 for non-existing keys&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">exists</span>(&#x22;test&#x22;, function (err, result) {
+
+result.should.equal(0);
+
+r.end(true);
+
+done();
+...</pre></li>
     </ul>
 
 
@@ -2068,7 +2240,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, result);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+});
+
+describe(&#x22;expire&#x22;, function () {
+
+it(&#x22;should return 0 for non-existing key&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.<span class="apidocCodeKeywordSpan">expire</span>(&#x22;test&#x22;, 10, function (err, result) {
+    result.should.equal(0);
+    r.end(true);
+    done();
+  });
+});
+
+it(&#x22;should return 1 when timeout set on existing key&#x22;, function (done) {
+...</pre></li>
     </ul>
 
 
@@ -2102,7 +2290,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, result);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    r.set(&#x22;test&#x22;, &#x22;test&#x22;, function (err, result) {
+
+      r.expire(&#x22;test&#x22;, 100, function (err, result) {
+
+        result.should.equal(1);
+
+        setTimeout(function () {
+          r.<span class="apidocCodeKeywordSpan">ttl</span>(&#x22;test&#x22;, function (err, ttl) {
+if (err) {
+  done(err);
+}
+
+ttl.should.be.within(1, 99);
+
+r.del(&#x22;test&#x22;);
+...</pre></li>
     </ul>
 
 
@@ -2122,7 +2326,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">blpop = function (mockInstance, keys, timeout, callback) {
   bpop.call(this, Item._list.prototype.lpop, mockInstance, keys, timeout, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+describe(&#x22;blpop&#x22;, function () {
+
+  it(&#x22;should block until the end of the timeout&#x22;, function (done) {
+var r = redismock.createClient();
+var time = false;
+
+r.<span class="apidocCodeKeywordSpan">blpop</span>(&#x22;foo8&#x22;, 1, function (err, result) {
+  should.not.exist(result);
+  time.should.equal(true);
+
+  done();
+
+});
+...</pre></li>
     </ul>
 
 
@@ -2137,7 +2356,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">brpop = function (mockInstance, keys, timeout, callback) {
   bpop.call(this, Item._list.prototype.rpop, mockInstance, keys, timeout, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+
+describe(&#x22;brpop&#x22;, function () {
+
+  it(&#x22;should block until the end of the timeout&#x22;, function (done) {
+var r = redismock.createClient();
+var time = false;
+r.<span class="apidocCodeKeywordSpan">brpop</span>(&#x22;foo&#x22;, 1, function (err, result) {
+  should.not.exist(result);
+  time.should.equal(true);
+  done();
+});
+
+setTimeout(function () {
+  time = true;
+...</pre></li>
     </ul>
 
 
@@ -2165,7 +2400,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   }
   mockInstance._callCallback(callback, null, val);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var keyUndefined = &#x22;keyUndefined&#x22;;
+  var testValues = [1, 2, 3, 4, 5];
+
+  it(&#x22;getting index of non exisiting list&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">lindex</span>(keyUndefined, 0, function (err, result) {
+
+      should.not.exist(result);
+
+      r.lindex(keyUndefined, 12, function (err, result) {
+
+should.not.exist(result);
+...</pre></li>
     </ul>
 
 
@@ -2181,7 +2431,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   var length = mockInstance.storage[key] ? mockInstance.storage[key].value.length : 0;
   mockInstance._callCallback(callback, null, length);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var testKey = &#x22;myKey3&#x22;;
+var testValues = [1, 2, 3, 4, 5];
+var testValue = 10;
+it(&#x22;should return 0&#x22;, function (done) {
+
+  var r = redismock.createClient();
+
+  r.<span class="apidocCodeKeywordSpan">llen</span>(testKey, function (err, result) {
+    result.should.equal(0);
+    r.end(true);
+    done();
+  });
+});
+
+it(&#x22;should return 5 and evolve&#x22;, function (done) {
+...</pre></li>
     </ul>
 
 
@@ -2196,7 +2462,18 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">lpop = function (mockInstance, key, callback) {
   pop.call(this, Item._list.prototype.lpop, mockInstance, key, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  it(&#x27;should pop at the front of the list&#x27;, function () {
+    var item = RedisItem.createList();
+
+    item.type.should.equal(&#x22;list&#x22;);
+    item.expires.should.equal(-1);
+    item.value = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;];
+    item.<span class="apidocCodeKeywordSpan">lpop</span>().should.eql(&#x27;a&#x27;);
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -2211,7 +2488,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">lpush = function () {
   push(Item._list.prototype.lpush, arguments);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+it(&#x27;should push at the front of the list&#x27;, function () {
+  var elt = &#x22;foo&#x22;;
+  var elt2 = true;
+  var item = RedisItem.createList();
+
+  item.type.should.equal(&#x22;list&#x22;);
+  item.expires.should.equal(-1);
+  item.<span class="apidocCodeKeywordSpan">lpush</span>([elt]);
+  item.lpush([elt2]);
+  item.value.should.eql([elt2 + &#x27;&#x27;, elt]);
+});
+
+it(&#x27;should pop at the back of the list&#x27;, function () {
+  var item = RedisItem.createList();
+...</pre></li>
     </ul>
 
 
@@ -2226,7 +2518,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">lpushx = function (mockInstance, key, value, callback) {
   pushx(Item._list.prototype.lpush, mockInstance, key, value, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+describe(&#x22;lpushx&#x22;, function (argument) {
+  var testKey = &#x22;myKey9&#x22;;
+
+  it(&#x22;tries to push on empty list&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">lpushx</span>(testKey, 3, function (err, result) {
+
+      result.should.equal(0);
+
+      r.lindex(testKey, 0, function (err, result) {
+
+should.not.exist(result);
+...</pre></li>
     </ul>
 
 
@@ -2255,7 +2562,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   }
   mockInstance._callCallback(callback, null, val);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var key2 = &#x22;lrange2&#x22;;
+var key3 = &#x22;lrange3&#x22;;
+var keyU = &#x22;keyMissing&#x22;;
+var testValues = [1, 2, 3, 4, 5];
+
+it(&#x22;getting a non-exisiting list&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.<span class="apidocCodeKeywordSpan">lrange</span>(keyU, 0, -1, function (err, result) {
+    result.should.be.an.Array().and.have.lengthOf(0);
+    r.end(true);
+    done();
+  });
+});
+
+it(&#x22;getting positive indexes of exisiting list&#x22;, function (done) {
+...</pre></li>
     </ul>
 
 
@@ -2290,7 +2613,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   }
   mockInstance._callCallback(callback, null, res);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var keyUndefined2 = &#x22;keyUndefined2&#x22;;
+  var testValues = [1, 2, 3, 4, 5];
+
+  it(&#x22;changing value of non exisiting list&#x22;, function (done) {
+
+var r = redismock.createClient();
+
+r.<span class="apidocCodeKeywordSpan">lset</span>(keyUndefined, 0, 1, function (err, result) {
+  err.message.should.equal(&#x22;ERR no such key&#x22;);
+  should.not.exist(result);
+
+  r.end(true);
+
+  done();
+});
+...</pre></li>
     </ul>
 
 
@@ -2305,7 +2644,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">rpop = function (mockInstance, key, callback) {
   pop.call(this, Item._list.prototype.rpop, mockInstance, key, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  it(&#x27;should pop at the back of the list&#x27;, function () {
+var item = RedisItem.createList();
+
+item.type.should.equal(&#x22;list&#x22;);
+item.expires.should.equal(-1);
+item.value = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;];
+item.<span class="apidocCodeKeywordSpan">rpop</span>().should.eql(&#x27;c&#x27;);
+  });
+
+  it(&#x27;should pop at the front of the list&#x27;, function () {
+var item = RedisItem.createList();
+
+item.type.should.equal(&#x22;list&#x22;);
+item.expires.should.equal(-1);
+...</pre></li>
     </ul>
 
 
@@ -2320,7 +2675,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">rpush = function () {
   push(Item._list.prototype.rpush, arguments);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+it(&#x27;should push at the back of the list&#x27;, function () {
+  var elt = &#x22;foo&#x22;;
+  var elt2 = true;
+  var item = RedisItem.createList();
+
+  item.type.should.equal(&#x22;list&#x22;);
+  item.expires.should.equal(-1);
+  item.<span class="apidocCodeKeywordSpan">rpush</span>([elt]);
+  item.rpush([elt2]);
+  item.value.should.eql([elt, elt2 + &#x27;&#x27;]);
+});
+
+it(&#x27;should push at the front of the list&#x27;, function () {
+  var elt = &#x22;foo&#x22;;
+  var elt2 = true;
+...</pre></li>
     </ul>
 
 
@@ -2335,33 +2706,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">rpushx = function (mockInstance, key, value, callback) {
   pushx(Item._list.prototype.rpush, mockInstance, key, value, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
+    <li>example usage<pre class="apidocCodePre">...
+describe(&#x22;rpushx&#x22;, function (argument) {
+  var testKey = &#x22;myKey8&#x22;;
 
+  it(&#x22;tries to push on empty list&#x22;, function (done) {
 
-</div>
+    var r = redismock.createClient();
 
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.redis-mock.multi" id="apidoc.module.redis-mock.multi">module redis-mock.multi</a></h1>
+    r.<span class="apidocCodeKeywordSpan">rpushx</span>(testKey, 3, function (err, result) {
 
+      result.should.equal(0);
 
-    <h2>
-        <a href="#apidoc.element.redis-mock.multi.multi" id="apidoc.element.redis-mock.multi.multi">
-        function <span class="apidocSignatureSpan">redis-mock.</span>multi
-        <span class="apidocSignatureSpan">(commands)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">multi = function (commands) {
-  var result = new Multi(this);
-  if(commands) {
-    commands.forEach(function (command) {
-      result._command(command[0], command.slice(1));
-    });
-  }
-  return result;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+      r.lindex(testKey, 0, function (err, result) {
+
+should.not.exist(result);
+...</pre></li>
     </ul>
 
 
@@ -2394,7 +2754,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     }
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+
+r.on(&#x22;punsubscribe&#x22;, function (ch) {
+  should.equal(ch, channelName);
+  r.end(true);
+  done();
+});
+r.<span class="apidocCodeKeywordSpan">psubscribe</span>(channelName);
+  });
+
+  it(&#x22;suscribing and publishing with the same connection should make an error&#x22;, function (done) {
+var channelName = &#x22;testchannel&#x22;;
+var otherChannel = &#x22;otherchannel&#x22;;
+
+var r = redismock.createClient();
+...</pre></li>
     </ul>
 
 
@@ -2416,7 +2792,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     mockInstance.emit(&#x27;message&#x27;, channel, msg);
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var otherChannel = &#x22;otherchannel&#x22;;
+
+  var r = redismock.createClient();
+  r.subscribe(channelName);
+
+  try {
+    (function () {
+      r.<span class="apidocCodeKeywordSpan">publish</span>(otherChannel, &#x22;&#x22;);
+    }).should.throwError();
+  } catch (e) {
+    r.end(true);
+
+    done();
+  }
+});
+...</pre></li>
     </ul>
 
 
@@ -2450,7 +2842,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   }
   // TODO: If this was the last subscription, pub_sub_mode should be set to false
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var channelName = &#x22;testchannel&#x22;;
+
+should.exist(r.psubscribe);
+should.exist(r.punsubscribe);
+
+r.on(&#x22;psubscribe&#x22;, function (ch) {
+  should.equal(ch, channelName);
+  r.<span class="apidocCodeKeywordSpan">punsubscribe</span>(&#x22;testchannel&#x22;);
+});
+
+r.on(&#x22;punsubscribe&#x22;, function (ch) {
+  should.equal(ch, channelName);
+  r.end(true);
+  done();
+});
+...</pre></li>
     </ul>
 
 
@@ -2486,7 +2894,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     }
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  should.equal(ch, channelName);
+
+  r.end(true);
+
+  done();
+});
+
+r.<span class="apidocCodeKeywordSpan">subscribe</span>(channelName);
+  });
+
+  it(&#x22;should psubscribe and punsubscribe to a channel&#x22;, function (done) {
+var r = redismock.createClient();
+var channelName = &#x22;testchannel&#x22;;
+
+should.exist(r.psubscribe);
+...</pre></li>
     </ul>
 
 
@@ -2527,7 +2951,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   // TODO: If this was the last subscription, pub_sub_mode should be set to false
   this.pub_sub_mode = false;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    should.exist(r.unsubscribe);
+
+    var channelName = &#x22;testchannel&#x22;;
+
+    r.on(&#x22;subscribe&#x22;, function (ch) {
+
+should.equal(ch, channelName);
+r.<span class="apidocCodeKeywordSpan">unsubscribe</span>(&#x22;testchannel&#x22;);
+    });
+
+    r.on(&#x22;unsubscribe&#x22;, function (ch) {
+
+should.equal(ch, channelName);
+
+r.end(true);
+...</pre></li>
     </ul>
 
 
@@ -2547,7 +2987,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">function auth(mockInstance, password, callback) {
   mockInstance._callCallback(callback, null, &#x27;OK&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+});
+
+describe(&#x22;auth&#x22;, function () {
+  it(&#x22;should always succeed and call back&#x22;, function (done) {
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">auth</span>(&#x22;secret&#x22;, function (err, result) {
+      result.should.equal(&#x27;OK&#x27;);
+      done();
+      r.end(true); //Moved this after the done() call. For some reason, calling `end()` beforehand causes this test to fail.
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -2581,7 +3036,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, &#x27;OK&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+describe(&#x22;flushdb&#x22;, function () {
+
+  it(&#x22;should clean database&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.set(&#x22;foo&#x22;, &#x22;bar&#x22;, function (err, result) {
+      r.<span class="apidocCodeKeywordSpan">flushdb</span>(function (err, result) {
+        result.should.equal(&#x22;OK&#x22;);
+
+        r.exists(&#x22;foo&#x22;, function (err, result) {
+
+result.should.be.equal(0);
+
+r.end(true);
+...</pre></li>
     </ul>
 
 
@@ -2617,7 +3088,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, addCount);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  redismock = require(&#x27;redis&#x27;);
+}
+
+describe(&#x27;sadd&#x27;, function () {
+
+  it(&#x27;should add a member to the set&#x27;, function (done) {
+    var r = redismock.createClient();
+    r.<span class="apidocCodeKeywordSpan">sadd</span>(&#x27;foo&#x27;, &#x27;bar&#x27;, function (err, result) {
+      result.should.eql(1);
+
+      r.smembers(&#x27;foo&#x27;, function (err, result) {
+result.should.eql([&#x27;bar&#x27;]);
+
+r.end(true);
+done();
+...</pre></li>
     </ul>
 
 
@@ -2644,7 +3131,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, count);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// TODO: Add tests of SMEMBERS
+
+describe(&#x27;scard&#x27;, function () {
+
+it(&#x27;should return the number of elements&#x27;, function (done) {
+  var r = redismock.createClient();
+  r.sadd(&#x27;foo&#x27;, &#x27;bar&#x27;, &#x27;baz&#x27;, function (err, result) {
+    r.<span class="apidocCodeKeywordSpan">scard</span>(&#x27;foo&#x27;, function (err, result) {
+      result.should.eql(2);
+      r.end(true);
+      done();
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -2667,7 +3169,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   var count = (mockInstance.storage[key].value.indexOf(member) &#x3e; -1) ? 1 : 0;
   mockInstance._callCallback(callback, null, count);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+describe(&#x27;sismember&#x27;, function () {
+
+  it(&#x27;should test if member exists&#x27;, function (done) {
+
+    var r = redismock.createClient();
+    r.sadd(&#x27;foo2&#x27;, &#x27;bar&#x27;, &#x27;baz&#x27;, &#x27;qux&#x27;, function (err, result) {
+      r.<span class="apidocCodeKeywordSpan">sismember</span>(&#x27;foo2&#x27;, &#x27;bar&#x27;, function (err, result) {
+        result.should.eql(1);
+        done();
+      });
+    });
+  });
+
+});
+...</pre></li>
     </ul>
 
 
@@ -2693,7 +3211,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, members);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+describe(&#x27;sadd&#x27;, function () {
+
+it(&#x27;should add a member to the set&#x27;, function (done) {
+  var r = redismock.createClient();
+  r.sadd(&#x27;foo&#x27;, &#x27;bar&#x27;, function (err, result) {
+    result.should.eql(1);
+
+    r.<span class="apidocCodeKeywordSpan">smembers</span>(&#x27;foo&#x27;, function (err, result) {
+      result.should.eql([&#x27;bar&#x27;]);
+
+      r.end(true);
+      done();
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -2729,7 +3263,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
 
   mockInstance._callCallback(callback, null, remCount);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+describe(&#x27;srem&#x27;, function () {
+
+  it(&#x27;should remove a member from the set&#x27;, function (done) {
+    var r = redismock.createClient();
+    r.sadd(&#x27;foo&#x27;, &#x27;bar&#x27;, &#x27;baz&#x27;, &#x27;qux&#x27;, function (err, result) {
+
+      r.<span class="apidocCodeKeywordSpan">srem</span>(&#x27;foo&#x27;, &#x27;bar&#x27;, function (err, result) {
+result.should.eql(1);
+
+r.smembers(&#x27;foo&#x27;, function (err, result) {
+  result.should.be.instanceof(Array);
+  result.should.have.length(2);
+  result.should.containEql(&#x27;baz&#x27;);
+  result.should.containEql(&#x27;qux&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -2838,7 +3388,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     mockInstance._callCallback(callback, null, count);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    3, &#x27;m3&#x27;,
+  ];
+
+  var aLen = args.length;
+  var mLen = aLen / 2;
+  it(&#x22;should add scores and members&#x22;, function (done) {
+    var r = redismock.createClient();
+    r.<span class="apidocCodeKeywordSpan">zadd</span>([testKey1].concat(args), function(err, result) {
+      result.should.equal(mLen);
+      // should only add new members
+      r.zadd([testKey1, &#x27;nx&#x27;, 1, &#x27;m1&#x27;, 0, &#x27;m4&#x27;], function(err, result) {
+result.should.equal(1);
+
+// only update existing members
+// this won&#x27;t bump the return count
+...</pre></li>
     </ul>
 
 
@@ -2865,7 +3431,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   var count = Object.keys(mockInstance.storage[key].value).length;
   mockInstance._callCallback(callback, null, count);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  it(&#x22;should add scores and members&#x22;, function (done) {
+    var r = redismock.createClient();
+
+    r.zadd(testKey1, testScore1, testMember1, testScore2, testMember2,
+      function(err, result) {
+        result.should.equal(2);
+
+        r.<span class="apidocCodeKeywordSpan">zcard</span>(testKey1, function(err, result) {
+          result.should.equal(2);
+          done();
+        });
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -2886,7 +3467,22 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   }
   exports.zrangebyscore(mockInstance, key, min, max, parse);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var mLen = aLen / 2;
+
+it(&#x22;should return the inclusive min &#x26; max count&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.zadd([testKey1].concat(args), function(err, result) {
+    result.should.equal(mLen);
+
+    r.<span class="apidocCodeKeywordSpan">zcount</span>([testKey1, &#x27;0&#x27;, &#x27;5&#x27;], function(err, result) {
+      should(result).equal(mLen);
+      done();
+    });
+
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -2919,7 +3515,23 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
   mockInstance.storage[key].value[member] = score;
   mockInstance._callCallback(callback, null, score);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var testKey1 = &#x22;zincrbyKey1&#x22;;
+var testKey2 = &#x22;zincrbyKey2&#x22;;
+
+it(&#x22;should add and increment a member&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.zadd([testKey1,  1, &#x27;m1&#x27;], function(err, result) {
+    result.should.equal(1);
+    r.<span class="apidocCodeKeywordSpan">zincrby</span>([testKey1, 5, &#x27;m1&#x27;], function(err, result) {
+      should(result).equal(&#x27;6&#x27;);
+      done();
+    });
+  });
+});
+
+it(&#x22;should increment a non-existing member&#x22;, function (done) {
+...</pre></li>
     </ul>
 
 
@@ -2934,7 +3546,24 @@ for (var i = 0; i &#x3c; subcriptions.length; i++) {
     <li>description and source-code<pre class="apidocCodePre">zrange = function (mockInstance, key, start, stop, withscores, callback) {
   getRange(mockInstance, key, start, stop, withscores, callback, false);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var aLen = args.length;
+var mLen = aLen / 2;
+
+it(&#x22;should return everything withscores&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.zadd([testKey1].concat(args), function(err, result) {
+    result.should.equal(mLen);
+    r.<span class="apidocCodeKeywordSpan">zrange</span>([testKey1, &#x27;0&#x27;, &#x27;-1&#x27;, &#x27;withscores&#x27;], function
+(err, result) {
+      should(result[0]).equal(&#x27;m1&#x27;);
+      should(result[1]).equal(&#x27;1&#x27;);
+      should(result.length).equal(aLen);
+      done();
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -2992,7 +3621,23 @@ if (len &#x3c; 4) {
     <li>description and source-code<pre class="apidocCodePre">zrank = function (mockInstance, key, member, callback) {
   getRank(mockInstance, key, member, callback, false);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  1.3, &#x27;m1.3&#x27;,
+  1.4, &#x27;m1.4&#x27;,
+  1.5, &#x27;m1.5&#x27;
+];
+it(&#x22;should return the rank for a member&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.zadd([testKey1].concat(args), function(err, result) {
+    r.<span class="apidocCodeKeywordSpan">zrank</span>(testKey1, &#x27;m1.1&#x27;, function(err, result) {
+      result.should.equal(1);
+      done();
+    });
+  });
+});
+it(&#x22;should return a null rank for a missing member&#x22;, function (done) {
+  var r = redismock.createClient();
+...</pre></li>
     </ul>
 
 
@@ -3034,7 +3679,22 @@ if (len &#x3c; 4) {
   }
   mockInstance._callCallback(callback, null, count);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    1.3, &#x27;m1.3&#x27;,
+    1.4, &#x27;m1.4&#x27;,
+    1.5, &#x27;m1.5&#x27;
+  ];
+  it(&#x22;should add and remove members&#x22;, function (done) {
+    var r = redismock.createClient();
+    r.zadd([testKey1].concat(args), function(err, result) {
+        r.<span class="apidocCodeKeywordSpan">zrem</span>([testKey1, &#x27;m1&#x27;, &#x27;m2&#x27;], function(err, result) {
+          result.should.equal(2);
+          done();
+      });
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -3064,7 +3724,23 @@ if (len &#x3c; 4) {
   }
   getRange(mockInstance, key, start, stop, deleteResults, false);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    1.3, &#x27;m1.3&#x27;,
+    1.4, &#x27;m1.4&#x27;,
+    1.5, &#x27;m1.5&#x27;
+  ];
+  it(&#x22;should add and remove members by rank&#x22;, function (done) {
+    var r = redismock.createClient();
+    r.zadd([testKey1].concat(args), function(err, result) {
+        r.<span class="apidocCodeKeywordSpan">zremrangebyrank</span>([testKey1, &#x27;0&#x27;, &#x27;1&#x27;], function(err, result
+) {
+          result.should.equal(2);
+          done();
+      });
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -3094,7 +3770,23 @@ if (len &#x3c; 4) {
   }
   getRangeByScore(mockInstance, key, min, max, deleteResults, false);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    1.3, &#x27;m1.3&#x27;,
+    1.4, &#x27;m1.4&#x27;,
+    1.5, &#x27;m1.5&#x27;
+  ];
+  it(&#x22;should add and remove members by rank&#x22;, function (done) {
+    var r = redismock.createClient();
+    r.zadd([testKey1].concat(args), function(err, result) {
+        r.<span class="apidocCodeKeywordSpan">zremrangebyscore</span>([testKey1, &#x27;1.1&#x27;, &#x27;1.5&#x27;], function(err
+, result) {
+          result.should.equal(5);
+          done();
+      });
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -3109,7 +3801,24 @@ if (len &#x3c; 4) {
     <li>description and source-code<pre class="apidocCodePre">zrevrange = function (mockInstance, key, start, stop, withscores, callback) {
   getRange(mockInstance, key, start, stop, withscores, callback, true);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var aLen = args.length;
+var mLen = aLen / 2;
+
+it(&#x22;should return everything withscores&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.zadd([testKey1].concat(args), function(err, result) {
+    result.should.equal(mLen);
+    r.<span class="apidocCodeKeywordSpan">zrevrange</span>([testKey1, &#x27;0&#x27;, &#x27;-1&#x27;, &#x27;withscores&#x27;], function
+(err, result) {
+      should(result[0]).equal(&#x27;m3&#x27;);
+      should(result[1]).equal(&#x27;3&#x27;);
+      should(result.length).equal(aLen);
+      done();
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -3135,7 +3844,24 @@ if (len &#x3c; 4) {
     callback,
     true);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var aLen = args.length;
+var mLen = aLen / 2;
+
+it(&#x22;should return the inclusive min &#x26; max range withscores&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.zadd([testKey1].concat(args), function(err, result) {
+    result.should.equal(mLen);
+    r.<span class="apidocCodeKeywordSpan">zrevrangebyscore</span>([testKey1, &#x27;5&#x27;, &#x27;0&#x27;, &#x27;withscores&#x27
+;], function(err, result) {
+      should(result[0]).equal(&#x27;m3&#x27;);
+      should(result[1]).equal(&#x27;3&#x27;);
+      should(result.length).equal(aLen);
+      done();
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -3150,7 +3876,23 @@ if (len &#x3c; 4) {
     <li>description and source-code<pre class="apidocCodePre">zrevrank = function (mockInstance, key, member, callback) {
   getRank(mockInstance, key, member, callback, true);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  1.3, &#x27;m1.3&#x27;,
+  1.4, &#x27;m1.4&#x27;,
+  1.5, &#x27;m1.5&#x27;
+];
+it(&#x22;should return the rank for a member&#x22;, function (done) {
+  var r = redismock.createClient();
+  r.zadd([testKey1].concat(args), function(err, result) {
+    r.<span class="apidocCodeKeywordSpan">zrevrank</span>(testKey1, &#x27;m2&#x27;, function(err, result) {
+      result.should.equal(1);
+      done();
+    });
+  });
+});
+it(&#x22;should return a null rank for a missing member&#x22;, function (done) {
+  var r = redismock.createClient();
+...</pre></li>
     </ul>
 
 
@@ -3177,7 +3919,22 @@ if (len &#x3c; 4) {
   var score = mockInstance.storage[key].value[Item._stringify(member)];
   mockInstance._callCallback(callback, null, score);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var testScore1 = 100.00;
+  var testMember1 = JSON.stringify({&#x27;a&#x27;: &#x27;b&#x27;});
+  it(&#x22;should add and return member score&#x22;, function (done) {
+    var r = redismock.createClient();
+    r.zadd(testKey1, testScore1, testMember1, function(err, result) {
+      result.should.equal(1);
+
+      r.<span class="apidocCodeKeywordSpan">zscore</span>([testKey1, testMember1], function(err, result) {
+        result.should.equal(String(100.00));
+        done();
+      });
+    });
+  });
+});
+...</pre></li>
     </ul>
 
 
@@ -3249,7 +4006,23 @@ mockInstance._callCallback(callback, err, oldValue);
     mockInstance._callCallback(callback, err, oldValue);
   });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var r;
+
+beforeEach(function () {
+  r = redismock.createClient();
+});
+
+it(&#x22;should return null for a non-existing key&#x22;, function (done) {
+  r.<span class="apidocCodeKeywordSpan">getset</span>(&#x22;does-not-exist&#x22;, &#x22;newValue&#x22;, function (err, result) {
+    should.not.exist(result);
+
+    r.end(true);
+    done();
+  });
+
+});
+...</pre></li>
     </ul>
 
 
@@ -3286,7 +4059,23 @@ mockInstance._callCallback(callback, err, oldValue);
     mockInstance._callCallback(callback, err, null);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    should.exist(multi.exists);
+    should.exist(multi.hget);
+  });
+
+  describe(&#x22;exec()&#x22;, function () {
+    it(&#x22;should handle things without errors and callbacks&#x22;, function (done) {
+var multi = r.multi();
+multi.get(&#x27;foo&#x27;).<span class="apidocCodeKeywordSpan">incr</span>(&#x27;foo&#x27;);
+
+r.set(&#x27;foo&#x27;, 3, function () {
+  multi.exec(function (err, results) {
+    should(err).not.be.ok();
+    should.deepEqual(results, [&#x27;3&#x27;,4]);
+    done();
+  });
+...</pre></li>
     </ul>
 
 
@@ -3325,7 +4114,22 @@ mockInstance._callCallback(callback, err, oldValue);
     mockInstance._callCallback(callback, err, null);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  it(&#x22;should increment the number stored at key by 2&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.set(&#x22;foo&#x22;, &#x22;10&#x22;, function (err, result) {
+
+      r.<span class="apidocCodeKeywordSpan">incrby</span>(&#x22;foo&#x22;, 2, function (err, result) {
+
+        result.should.eql(12);
+
+        r.get(&#x22;foo&#x22;, function (err, result) {
+
+result.should.eql(&#x22;12&#x22;);
+...</pre></li>
     </ul>
 
 
@@ -3362,7 +4166,22 @@ mockInstance._callCallback(callback, err, oldValue);
     mockInstance._callCallback(callback, err, null);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  it(&#x22;should increment the number stored at key by a float value&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.set(&#x22;foo&#x22;, &#x22;1.5&#x22;, function (err, result) {
+
+      r.<span class="apidocCodeKeywordSpan">incrbyfloat</span>(&#x22;foo&#x22;, &#x22;0.5&#x22;, function (err, result) {
+
+        result.should.eql(&#x22;2&#x22;);
+
+        r.get(&#x22;foo&#x22;, function (err, result) {
+
+result.should.eql(&#x22;2&#x22;);
+...</pre></li>
     </ul>
 
 
@@ -3409,7 +4228,24 @@ mockInstance._callCallback(callback, err, oldValue);
   }
 
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    var r = redismock.createClient();
+
+    r.set(&#x22;multi1&#x22;, &#x22;one&#x22;, function (err, result) {
+
+      r.set(&#x22;multi3&#x22;, &#x22;three&#x22;, function (err, result) {
+
+        r.<span class="apidocCodeKeywordSpan">mget</span>(&#x22;multi1&#x22;, &#x22;multi2&#x22;, &#x22;multi3&#x22;, function (
+err, result) {
+result.should.be.ok;
+
+result[0].should.equal(&#x22;one&#x22;);
+
+should.not.exist(result[1]);
+
+result[2].should.equal(&#x22;three&#x22;);
+...</pre></li>
     </ul>
 
 
@@ -3425,7 +4261,23 @@ mockInstance._callCallback(callback, err, oldValue);
 
   mockInstance._callCallback(callback, null, &#x22;PONG&#x22;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+describe(&#x22;ping&#x22;, function () {
+  it(&#x22;should return PONG&#x22;, function (done) {
+
+var r = redismock.createClient();
+
+r.<span class="apidocCodeKeywordSpan">ping</span>(function (err, result) {
+  result.should.equal(&#x22;PONG&#x22;);
+
+  r.end(true);
+
+  done();
+
+});
+...</pre></li>
     </ul>
 
 
@@ -3480,7 +4332,23 @@ exports.setnx = function (mockInstance, key, value, callback) {
     });
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+describe(&#x22;setnx&#x22;, function () {
+
+  it(&#x22;should set a key&#x22;, function (done) {
+
+    var r = redismock.createClient();
+
+    r.<span class="apidocCodeKeywordSpan">setnx</span>(&#x22;foo&#x22;, &#x22;10&#x22;, function (err, result) {
+  result.should.eql(1);
+
+r.get(&#x22;foo&#x22;, function (err, result) {
+  result.should.eql(&#x22;10&#x22;);
+  r.end(true);
+  done();
+});
+...</pre></li>
     </ul>
 
 
