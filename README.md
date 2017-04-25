@@ -1,6 +1,6 @@
 # npmdoc-redis-mock
 
-#### api documentation for  [redis-mock (v0.16.0)](https://github.com/yeahoffline/redis-mock#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-redis-mock.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-redis-mock) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-redis-mock.svg)](https://travis-ci.org/npmdoc/node-npmdoc-redis-mock)
+#### basic api documentation for  [redis-mock (v0.16.0)](https://github.com/yeahoffline/redis-mock#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-redis-mock.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-redis-mock) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-redis-mock.svg)](https://travis-ci.org/npmdoc/node-npmdoc-redis-mock)
 
 #### Redis client mock object for unit testing
 
@@ -102,7 +102,8 @@
     "scripts": {
         "test": "make test"
     },
-    "version": "0.16.0"
+    "version": "0.16.0",
+    "bin": {}
 }
 ```
 
